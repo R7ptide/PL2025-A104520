@@ -1,7 +1,7 @@
 # TPC1 - Somador On/Off  
 
 **Aluno:** Salvador Duarte Magalhães Barreto - *A104520*  
-![Alt text](image.PNG)
+![Alt text](https://github.com/R7ptide/PL2025-A104520/blob/main/image.png)
 
 ## Descrição  
 
