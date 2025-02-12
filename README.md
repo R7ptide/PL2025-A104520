@@ -1,5 +1,6 @@
 # PL2025-A104520
 ## Salvador Duarte Magalhães Barreto
+![Alt text](image.jpg)
 
 Este repositório serve o propóstido de registar e disponibilizar todos os "TPC" propostos semanalmente na UC de Processamento de Linguagens do terceiro ano da Licenciatura em Engenharia Informática da Universidade do Minho.
 
