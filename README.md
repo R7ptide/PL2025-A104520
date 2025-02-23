@@ -6,10 +6,4 @@ Este repositório serve o propóstido de registar e disponibilizar todos os "TPC
 
 Tarefas semanais:
 - [TPC1](https://github.com/R7ptide/PL2025-A104520/tree/main/TPC1)
-- TPC2 - XXX
-- TPC3 - XXX
-- TPC4 - XXX
-- TPC5 - XXX
-- TPC6 - XXX
-- TPC7 - XXX
-- TPC8 - XXX
+- [TPC2](https://github.com/R7ptide/PL2025-A104520/tree/main/TPC2)
