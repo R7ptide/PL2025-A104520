@@ -1,4 +1,4 @@
-# TPC1 - Análise de um dataset de obras musicais  
+# TPC2 - Análise de um dataset de obras musicais  
 
 **Aluno:** Salvador Duarte Magalhães Barreto - *A104520*  
 ![Alt text](https://github.com/R7ptide/EngWeb2025-A104520/blob/main/image.png)
