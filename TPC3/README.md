@@ -78,4 +78,4 @@ A abordagem de iterar pelas linhas uma a uma foi escolhida para evitar que difer
 
 O código-fonte pode ser encontrado no seguinte repositório:  
 
-📌 [**GitHub - TPC3**](https://github.com/R7ptide/PL2025-A104520/blob/main/TPC3/conversor.py)  
+📌 [**GitHub - TPC3**](https://github.com/R7ptide/PL2025-A104520/blob/main/TPC3/tpc3.py)  
