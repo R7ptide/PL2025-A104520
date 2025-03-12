@@ -8,3 +8,4 @@ Tarefas semanais:
 - [TPC1](https://github.com/R7ptide/PL2025-A104520/tree/main/TPC1)
 - [TPC2](https://github.com/R7ptide/PL2025-A104520/tree/main/TPC2)
 - [TPC3](https://github.com/R7ptide/PL2025-A104520/tree/main/TPC3)
+- [TPC4](https://github.com/R7ptide/PL2025-A104520/tree/main/TPC4)
