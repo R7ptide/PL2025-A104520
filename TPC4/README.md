@@ -65,4 +65,4 @@ Se o token for uma quebra de linha, incrementa o número da linha. Espaços, tab
 
 O código-fonte pode ser encontrado no seguinte repositório:  
 
-📌 [**GitHub - TPC3**](https://github.com/R7ptide/PL2025-A104520/blob/main/TPC4/tpc4.py)  
+📌 [**GitHub - TPC4**](https://github.com/R7ptide/PL2025-A104520/blob/main/TPC4/tpc4.py)  
