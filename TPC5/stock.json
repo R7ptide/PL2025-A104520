@@ -1,0 +1,68 @@
+[
+    {
+        "cod": "A23",
+        "nome": "água 0.5L",
+        "quant": 7,
+        "preco": 0.7
+    },
+    {
+        "cod": "A24",
+        "nome": "Coca-Cola 0.33L",
+        "quant": 10,
+        "preco": 1.0
+    },
+    {
+        "cod": "A25",
+        "nome": "Sumol Laranja 0.33L",
+        "quant": 7,
+        "preco": 1.0
+    },
+    {
+        "cod": "B10",
+        "nome": "Batatas Fritas",
+        "quant": 5,
+        "preco": 1.2
+    },
+    {
+        "cod": "B11",
+        "nome": "Doritos Queijo",
+        "quant": 4,
+        "preco": 1.3
+    },
+    {
+        "cod": "B12",
+        "nome": "Mix Frutos Secos",
+        "quant": 5,
+        "preco": 1.5
+    },
+    {
+        "cod": "C01",
+        "nome": "Chocolate de Leite",
+        "quant": 9,
+        "preco": 0.9
+    },
+    {
+        "cod": "C02",
+        "nome": "Snickers",
+        "quant": 7,
+        "preco": 1.0
+    },
+    {
+        "cod": "C03",
+        "nome": "Kinder Bueno",
+        "quant": 5,
+        "preco": 1.2
+    },
+    {
+        "cod": "D05",
+        "nome": "Chicletes",
+        "quant": 11,
+        "preco": 0.5
+    },
+    {
+        "cod": "D06",
+        "nome": "Bolacha Oreo",
+        "quant": 6,
+        "preco": 0.8
+    }
+]
