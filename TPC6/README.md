@@ -23,7 +23,7 @@ Exp2 -> "+" Termo Exp
       | ε
 Termo -> Fator Termo2
 Termo2 -> "*" Fator Termo 
-        | "/" Fator Termo2 
+        | "/" Fator Termo
         | ε
 Fator -> "(" Exp ")"
        | num
