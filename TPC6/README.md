@@ -31,7 +31,7 @@ Fator -> "(" Exp ")"
 
 A implementação está dividida em três ficheiros:
 
-1. Analisador Léxico (`expr_analex.py`)
+### 1. Analisador Léxico (`expr_analex.py`)
 
 O analisador léxico utiliza a biblioteca `ply.lex` para identificar os tokens que compõem as expressões aritméticas. Os tokens suportados são:
 
@@ -41,7 +41,7 @@ O analisador léxico utiliza a biblioteca `ply.lex` para identificar os tokens q
 
 O lexer também ignora espaços e tabulações e identifica erros léxicos.
 
-2. Analisador Sintático (`expr_anasin.py`)
+### 2. Analisador Sintático (`expr_anasin.py`)
 
 O analisador sintático implementa um parser recursivo descendente baseado na gramática definida. A função principal `rec_Parser()` recebe uma expressão, analisa-a recursivamente e devolve o resultado da sua avaliação.
 
@@ -51,7 +51,7 @@ As principais funções do parser incluem:
 - `rec_Termo()`: Trata termos e operadores `*` e `/`
 - `rec_Fator()`: Trata números e expressões entre parênteses
 
-3. Programa Principal (`expr_program.py`)
+### 3. Programa Principal (`expr_program.py`)
 
 O programa principal executa um loop interativo onde o utilizador pode inserir expressões aritméticas, que são analisadas e calculadas pelo parser. O resultado da expressão é então apresentado no ecrã.
 
