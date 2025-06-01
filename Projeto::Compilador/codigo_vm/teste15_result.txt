@@ -1,0 +1,93 @@
+    ALLOC 3
+    PUSHI 0
+    PUSHI 0
+    PUSHI 0
+    PUSHI 0
+    PUSHI 0
+START:
+    PUSHS "=== Teste Completo do Compilador Pascal ==="
+    WRITES
+    WRITELN
+    PUSHG 0
+    PUSHI 1
+    PUSHI 1
+    SUB
+    PUSHI 10
+    STOREN
+    PUSHG 0
+    PUSHI 2
+    PUSHI 1
+    SUB
+    PUSHI 20
+    STOREN
+    PUSHG 0
+    PUSHI 3
+    PUSHI 1
+    SUB
+    PUSHI 30
+    STOREN
+    PUSHI 1
+    STOREG 3
+    PUSHI 0
+    STOREG 4
+    PUSHG 4
+    NOT
+    JZ ENDIF0
+    PUSHS "Status: NOT encontrado = true"
+    WRITES
+    WRITELN
+ENDIF0:
+    PUSHG 3
+    PUSHG 4
+    NOT
+    AND
+    JZ ELSEBLOCK1
+    PUSHS "Status: ativo AND (NOT encontrado) = false"
+    WRITES
+    WRITELN
+    JUMP ENDIF1
+ELSEBLOCK1:
+    PUSHS "Status: ativo AND (NOT encontrado) = true"
+    WRITES
+    WRITELN
+ENDIF1:
+    PUSHS "Elementos do array:"
+    WRITES
+    WRITELN
+    PUSHS "Elemento 1: "
+    WRITES
+    PUSHG 0
+    PUSHI 1
+    PUSHI 1
+    SUB
+    LOADN
+    WRITEI
+    PUSHS ""
+    WRITES
+    WRITELN
+    PUSHS "Elemento 2: "
+    WRITES
+    PUSHG 0
+    PUSHI 2
+    PUSHI 1
+    SUB
+    LOADN
+    WRITEI
+    PUSHS ""
+    WRITES
+    WRITELN
+    PUSHS "Elemento 3: "
+    WRITES
+    PUSHG 0
+    PUSHI 3
+    PUSHI 1
+    SUB
+    LOADN
+    WRITEI
+    PUSHS ""
+    WRITES
+    WRITELN
+    PUSHS "=== Teste Finalizado ==="
+    WRITES
+    WRITELN
+STOP

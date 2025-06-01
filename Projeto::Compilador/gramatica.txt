@@ -1,0 +1,124 @@
+-- GRAMATICA --
+
+program -> header block DOT
+
+header -> PROGRAM ID SEMICOLON variables
+
+variables -> VAR varDecls
+           | empty 
+
+varDecls -> varDeclaration varDecls
+          | empty 
+
+varDeclaration -> idList COLON type SEMICOLON 
+
+idList -> ID idListTail 
+
+idListTail -> COMMA ID idListTail
+            | empty 
+
+type -> baseType
+      | arrayType
+
+baseType -> INTEGER
+          | REAL
+          | BOOLEAN 
+          | STRING
+
+arrayType -> ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET OF baseType
+
+block -> BEGIN contentList END 
+
+contentList -> content contentTail
+             | empty 
+
+contentTail -> SEMICOLON contentList
+             | empty 
+
+content -> openStatement
+         | closedStatement 
+
+openStatement -> IF booleanexpression THEN content 
+               | IF booleanexpression THEN closedStatement ELSE openStatement
+               | WHILE booleanexpression DO openStatement
+               | FOR ID ATTRIB expression forDirection expression DO openStatement 
+
+closedStatement -> simpleStatement
+                 | block
+                 | IF booleanexpression THEN closedStatement ELSE closedStatement
+                 | WHILE booleanexpression DO closedStatement
+                 | FOR ID ATTRIB expression forDirection expression DO closedStatement 
+
+simpleStatement -> WRITELN LPARENT writeArgs RPARENT
+                 | WRITE LPARENT writeArgs RPARENT
+                 | READLN LPARENT readIdOrArray RPARENT
+                 | attribIdOrArray ATTRIB expression 
+
+readIdOrArray -> ID idTail
+
+attribIdOrArray -> ID idTail
+
+idTail -> LBRACKET expression RBRACKET 
+        | empty
+
+forDirection -> TO 
+              | DOWNTO
+
+writeArgs -> singleArg moreArgs
+
+moreArgs -> COMMA singleArg moreArgs
+          | empty
+
+singleArg -> FRASE
+           | ID idTail
+
+booleanexpression -> expression booleanTail
+
+booleanTail -> oplogico expression
+             | empty
+
+oplogico -> EQUALS 
+          | GREATER 
+          | GE 
+          | LESSER 
+          | LE 
+          | NOTEQUAL
+
+expression -> termo 
+            | expression oplp termo
+
+oplp -> PLUS 
+      | MINUS 
+      | OR
+
+termo -> fator 
+       | termo ophp fator 
+
+ophp -> TIMES 
+      | DIV 
+      | MOD
+      | AND 
+      | DIVIDE
+
+fator -> const 
+       | var 
+       | LPARENT booleanexpression RPARENT
+       | functioncall
+       | NOT fator
+
+const -> NUMBER 
+       | FRASE
+       | TRUE
+       | FALSE
+
+var -> ID varTail
+
+varTail -> LBRACKET expression RBRACKET 
+         | empty
+
+functioncall -> LENGTH LPARENT arguments RPARENT
+
+arguments -> ID
+           | FRASE
+
+empty ->
