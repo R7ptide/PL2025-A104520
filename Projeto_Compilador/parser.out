@@ -1,0 +1,2971 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COMMENT
+    FUNCTION
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> header block DOT
+Rule 2     header -> PROGRAM ID SEMICOLON variables
+Rule 3     variables -> VAR varDecls
+Rule 4     variables -> empty
+Rule 5     varDecls -> varDeclaration varDecls
+Rule 6     varDecls -> empty
+Rule 7     varDeclaration -> idList COLON type SEMICOLON
+Rule 8     idList -> ID idListTail
+Rule 9     idListTail -> COMMA ID idListTail
+Rule 10    idListTail -> empty
+Rule 11    type -> baseType
+Rule 12    type -> arrayType
+Rule 13    arrayType -> ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET OF baseType
+Rule 14    baseType -> INTEGER
+Rule 15    baseType -> REAL
+Rule 16    baseType -> BOOLEAN
+Rule 17    baseType -> STRING
+Rule 18    block -> BEGIN contentList END
+Rule 19    contentList -> content contentTail
+Rule 20    contentList -> empty
+Rule 21    contentTail -> SEMICOLON contentList
+Rule 22    contentTail -> empty
+Rule 23    content -> openStatement
+Rule 24    content -> closedStatement
+Rule 25    openStatement -> IF booleanexpression THEN content
+Rule 26    openStatement -> IF booleanexpression THEN closedStatement ELSE openStatement
+Rule 27    openStatement -> WHILE booleanexpression DO openStatement
+Rule 28    openStatement -> FOR ID ATTRIB expression forDirection expression DO openStatement
+Rule 29    closedStatement -> simpleStatement
+Rule 30    closedStatement -> block
+Rule 31    closedStatement -> IF booleanexpression THEN closedStatement ELSE closedStatement
+Rule 32    closedStatement -> WHILE booleanexpression DO closedStatement
+Rule 33    closedStatement -> FOR ID ATTRIB expression forDirection expression DO closedStatement
+Rule 34    simpleStatement -> WRITELN LPARENT writeArgs RPARENT
+Rule 35    simpleStatement -> WRITE LPARENT writeArgs RPARENT
+Rule 36    writeArgs -> singleArg moreArgs
+Rule 37    moreArgs -> COMMA singleArg moreArgs
+Rule 38    moreArgs -> empty
+Rule 39    singleArg -> FRASE
+Rule 40    singleArg -> ID idTail
+Rule 41    simpleStatement -> READLN LPARENT readIdOrArray RPARENT
+Rule 42    readIdOrArray -> ID idTail
+Rule 43    idTail -> LBRACKET expression RBRACKET
+Rule 44    idTail -> empty
+Rule 45    simpleStatement -> attribIdOrArray ATTRIB expression
+Rule 46    attribIdOrArray -> ID idTail
+Rule 47    forDirection -> TO
+Rule 48    forDirection -> DOWNTO
+Rule 49    booleanexpression -> expression booleanTail
+Rule 50    booleanTail -> oplogico expression
+Rule 51    booleanTail -> empty
+Rule 52    expression -> termo
+Rule 53    expression -> expression oplp termo
+Rule 54    termo -> fator
+Rule 55    termo -> termo ophp fator
+Rule 56    ophp -> TIMES
+Rule 57    ophp -> DIV
+Rule 58    ophp -> MOD
+Rule 59    ophp -> AND
+Rule 60    ophp -> DIVIDE
+Rule 61    oplp -> PLUS
+Rule 62    oplp -> MINUS
+Rule 63    oplp -> OR
+Rule 64    fator -> const
+Rule 65    fator -> var
+Rule 66    fator -> LPARENT booleanexpression RPARENT
+Rule 67    fator -> functioncall
+Rule 68    fator -> NOT fator
+Rule 69    functioncall -> LENGTH LPARENT arguments RPARENT
+Rule 70    arguments -> ID
+Rule 71    arguments -> FRASE
+Rule 72    const -> NUMBER
+Rule 73    const -> FRASE
+Rule 74    const -> TRUE
+Rule 75    const -> FALSE
+Rule 76    var -> ID varTail
+Rule 77    varTail -> LBRACKET expression RBRACKET
+Rule 78    varTail -> empty
+Rule 79    oplogico -> EQUALS
+Rule 80    oplogico -> GREATER
+Rule 81    oplogico -> GE
+Rule 82    oplogico -> LESSER
+Rule 83    oplogico -> LE
+Rule 84    oplogico -> NOTEQUAL
+Rule 85    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 59
+ARRAY                : 13
+ATTRIB               : 28 33 45
+BEGIN                : 18
+BOOLEAN              : 16
+COLON                : 7
+COMMA                : 9 37
+COMMENT              : 
+DIV                  : 57
+DIVIDE               : 60
+DO                   : 27 28 32 33
+DOT                  : 1
+DOWNTO               : 48
+ELSE                 : 26 31
+END                  : 18
+EQUALS               : 79
+FALSE                : 75
+FOR                  : 28 33
+FRASE                : 39 71 73
+FUNCTION             : 
+GE                   : 81
+GREATER              : 80
+ID                   : 2 8 9 28 33 40 42 46 70 76
+IF                   : 25 26 31
+INTEGER              : 14
+LBRACKET             : 13 43 77
+LE                   : 83
+LENGTH               : 69
+LESSER               : 82
+LPARENT              : 34 35 41 66 69
+MINUS                : 62
+MOD                  : 58
+NOT                  : 68
+NOTEQUAL             : 84
+NUMBER               : 13 13 72
+OF                   : 13
+OR                   : 63
+PLUS                 : 61
+PROGRAM              : 2
+RANGE                : 13
+RBRACKET             : 13 43 77
+READLN               : 41
+REAL                 : 15
+RPARENT              : 34 35 41 66 69
+SEMICOLON            : 2 7 21
+STRING               : 17
+THEN                 : 25 26 31
+TIMES                : 56
+TO                   : 47
+TRUE                 : 74
+VAR                  : 3
+WHILE                : 27 32
+WRITE                : 35
+WRITELN              : 34
+error                : 
+
+Nonterminals, with rules where they appear
+
+arguments            : 69
+arrayType            : 12
+attribIdOrArray      : 45
+baseType             : 11 13
+block                : 1 30
+booleanTail          : 49
+booleanexpression    : 25 26 27 31 32 66
+closedStatement      : 24 26 31 31 32 33
+const                : 64
+content              : 19 25
+contentList          : 18 21
+contentTail          : 19
+empty                : 4 6 10 20 22 38 44 51 78
+expression           : 28 28 33 33 43 45 49 50 53 77
+fator                : 54 55 68
+forDirection         : 28 33
+functioncall         : 67
+header               : 1
+idList               : 7
+idListTail           : 8 9
+idTail               : 40 42 46
+moreArgs             : 36 37
+openStatement        : 23 26 27 28
+ophp                 : 55
+oplogico             : 50
+oplp                 : 53
+program              : 0
+readIdOrArray        : 41
+simpleStatement      : 29
+singleArg            : 36 37
+termo                : 52 53 55
+type                 : 7
+var                  : 65
+varDeclaration       : 5
+varDecls             : 3 5
+varTail              : 76
+variables            : 2
+writeArgs            : 34 35
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . header block DOT
+    (2) header -> . PROGRAM ID SEMICOLON variables
+
+    PROGRAM         shift and go to state 3
+
+    program                        shift and go to state 1
+    header                         shift and go to state 2
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> header . block DOT
+    (18) block -> . BEGIN contentList END
+
+    BEGIN           shift and go to state 5
+
+    block                          shift and go to state 4
+
+state 3
+
+    (2) header -> PROGRAM . ID SEMICOLON variables
+
+    ID              shift and go to state 6
+
+
+state 4
+
+    (1) program -> header block . DOT
+
+    DOT             shift and go to state 7
+
+
+state 5
+
+    (18) block -> BEGIN . contentList END
+    (19) contentList -> . content contentTail
+    (20) contentList -> . empty
+    (23) content -> . openStatement
+    (24) content -> . closedStatement
+    (85) empty -> .
+    (25) openStatement -> . IF booleanexpression THEN content
+    (26) openStatement -> . IF booleanexpression THEN closedStatement ELSE openStatement
+    (27) openStatement -> . WHILE booleanexpression DO openStatement
+    (28) openStatement -> . FOR ID ATTRIB expression forDirection expression DO openStatement
+    (29) closedStatement -> . simpleStatement
+    (30) closedStatement -> . block
+    (31) closedStatement -> . IF booleanexpression THEN closedStatement ELSE closedStatement
+    (32) closedStatement -> . WHILE booleanexpression DO closedStatement
+    (33) closedStatement -> . FOR ID ATTRIB expression forDirection expression DO closedStatement
+    (34) simpleStatement -> . WRITELN LPARENT writeArgs RPARENT
+    (35) simpleStatement -> . WRITE LPARENT writeArgs RPARENT
+    (41) simpleStatement -> . READLN LPARENT readIdOrArray RPARENT
+    (45) simpleStatement -> . attribIdOrArray ATTRIB expression
+    (18) block -> . BEGIN contentList END
+    (46) attribIdOrArray -> . ID idTail
+
+    END             reduce using rule 85 (empty -> .)
+    IF              shift and go to state 13
+    WHILE           shift and go to state 14
+    FOR             shift and go to state 15
+    WRITELN         shift and go to state 19
+    WRITE           shift and go to state 20
+    READLN          shift and go to state 21
+    BEGIN           shift and go to state 5
+    ID              shift and go to state 16
+
+    contentList                    shift and go to state 8
+    content                        shift and go to state 9
+    empty                          shift and go to state 10
+    openStatement                  shift and go to state 11
+    closedStatement                shift and go to state 12
+    simpleStatement                shift and go to state 17
+    block                          shift and go to state 18
+    attribIdOrArray                shift and go to state 22
+
+state 6
+
+    (2) header -> PROGRAM ID . SEMICOLON variables
+
+    SEMICOLON       shift and go to state 23
+
+
+state 7
+
+    (1) program -> header block DOT .
+
+    $end            reduce using rule 1 (program -> header block DOT .)
+
+
+state 8
+
+    (18) block -> BEGIN contentList . END
+
+    END             shift and go to state 24
+
+
+state 9
+
+    (19) contentList -> content . contentTail
+    (21) contentTail -> . SEMICOLON contentList
+    (22) contentTail -> . empty
+    (85) empty -> .
+
+    SEMICOLON       shift and go to state 26
+    END             reduce using rule 85 (empty -> .)
+
+    contentTail                    shift and go to state 25
+    empty                          shift and go to state 27
+
+state 10
+
+    (20) contentList -> empty .
+
+    END             reduce using rule 20 (contentList -> empty .)
+
+
+state 11
+
+    (23) content -> openStatement .
+
+    SEMICOLON       reduce using rule 23 (content -> openStatement .)
+    END             reduce using rule 23 (content -> openStatement .)
+
+
+state 12
+
+    (24) content -> closedStatement .
+
+    SEMICOLON       reduce using rule 24 (content -> closedStatement .)
+    END             reduce using rule 24 (content -> closedStatement .)
+
+
+state 13
+
+    (25) openStatement -> IF . booleanexpression THEN content
+    (26) openStatement -> IF . booleanexpression THEN closedStatement ELSE openStatement
+    (31) closedStatement -> IF . booleanexpression THEN closedStatement ELSE closedStatement
+    (49) booleanexpression -> . expression booleanTail
+    (52) expression -> . termo
+    (53) expression -> . expression oplp termo
+    (54) termo -> . fator
+    (55) termo -> . termo ophp fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    booleanexpression              shift and go to state 28
+    expression                     shift and go to state 29
+    termo                          shift and go to state 30
+    fator                          shift and go to state 31
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 14
+
+    (27) openStatement -> WHILE . booleanexpression DO openStatement
+    (32) closedStatement -> WHILE . booleanexpression DO closedStatement
+    (49) booleanexpression -> . expression booleanTail
+    (52) expression -> . termo
+    (53) expression -> . expression oplp termo
+    (54) termo -> . fator
+    (55) termo -> . termo ophp fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    booleanexpression              shift and go to state 43
+    expression                     shift and go to state 29
+    termo                          shift and go to state 30
+    fator                          shift and go to state 31
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 15
+
+    (28) openStatement -> FOR . ID ATTRIB expression forDirection expression DO openStatement
+    (33) closedStatement -> FOR . ID ATTRIB expression forDirection expression DO closedStatement
+
+    ID              shift and go to state 44
+
+
+state 16
+
+    (46) attribIdOrArray -> ID . idTail
+    (43) idTail -> . LBRACKET expression RBRACKET
+    (44) idTail -> . empty
+    (85) empty -> .
+
+    LBRACKET        shift and go to state 46
+    ATTRIB          reduce using rule 85 (empty -> .)
+
+    idTail                         shift and go to state 45
+    empty                          shift and go to state 47
+
+state 17
+
+    (29) closedStatement -> simpleStatement .
+
+    SEMICOLON       reduce using rule 29 (closedStatement -> simpleStatement .)
+    END             reduce using rule 29 (closedStatement -> simpleStatement .)
+    ELSE            reduce using rule 29 (closedStatement -> simpleStatement .)
+
+
+state 18
+
+    (30) closedStatement -> block .
+
+    SEMICOLON       reduce using rule 30 (closedStatement -> block .)
+    END             reduce using rule 30 (closedStatement -> block .)
+    ELSE            reduce using rule 30 (closedStatement -> block .)
+
+
+state 19
+
+    (34) simpleStatement -> WRITELN . LPARENT writeArgs RPARENT
+
+    LPARENT         shift and go to state 48
+
+
+state 20
+
+    (35) simpleStatement -> WRITE . LPARENT writeArgs RPARENT
+
+    LPARENT         shift and go to state 49
+
+
+state 21
+
+    (41) simpleStatement -> READLN . LPARENT readIdOrArray RPARENT
+
+    LPARENT         shift and go to state 50
+
+
+state 22
+
+    (45) simpleStatement -> attribIdOrArray . ATTRIB expression
+
+    ATTRIB          shift and go to state 51
+
+
+state 23
+
+    (2) header -> PROGRAM ID SEMICOLON . variables
+    (3) variables -> . VAR varDecls
+    (4) variables -> . empty
+    (85) empty -> .
+
+    VAR             shift and go to state 53
+    BEGIN           reduce using rule 85 (empty -> .)
+
+    variables                      shift and go to state 52
+    empty                          shift and go to state 54
+
+state 24
+
+    (18) block -> BEGIN contentList END .
+
+    DOT             reduce using rule 18 (block -> BEGIN contentList END .)
+    SEMICOLON       reduce using rule 18 (block -> BEGIN contentList END .)
+    END             reduce using rule 18 (block -> BEGIN contentList END .)
+    ELSE            reduce using rule 18 (block -> BEGIN contentList END .)
+
+
+state 25
+
+    (19) contentList -> content contentTail .
+
+    END             reduce using rule 19 (contentList -> content contentTail .)
+
+
+state 26
+
+    (21) contentTail -> SEMICOLON . contentList
+    (19) contentList -> . content contentTail
+    (20) contentList -> . empty
+    (23) content -> . openStatement
+    (24) content -> . closedStatement
+    (85) empty -> .
+    (25) openStatement -> . IF booleanexpression THEN content
+    (26) openStatement -> . IF booleanexpression THEN closedStatement ELSE openStatement
+    (27) openStatement -> . WHILE booleanexpression DO openStatement
+    (28) openStatement -> . FOR ID ATTRIB expression forDirection expression DO openStatement
+    (29) closedStatement -> . simpleStatement
+    (30) closedStatement -> . block
+    (31) closedStatement -> . IF booleanexpression THEN closedStatement ELSE closedStatement
+    (32) closedStatement -> . WHILE booleanexpression DO closedStatement
+    (33) closedStatement -> . FOR ID ATTRIB expression forDirection expression DO closedStatement
+    (34) simpleStatement -> . WRITELN LPARENT writeArgs RPARENT
+    (35) simpleStatement -> . WRITE LPARENT writeArgs RPARENT
+    (41) simpleStatement -> . READLN LPARENT readIdOrArray RPARENT
+    (45) simpleStatement -> . attribIdOrArray ATTRIB expression
+    (18) block -> . BEGIN contentList END
+    (46) attribIdOrArray -> . ID idTail
+
+    END             reduce using rule 85 (empty -> .)
+    IF              shift and go to state 13
+    WHILE           shift and go to state 14
+    FOR             shift and go to state 15
+    WRITELN         shift and go to state 19
+    WRITE           shift and go to state 20
+    READLN          shift and go to state 21
+    BEGIN           shift and go to state 5
+    ID              shift and go to state 16
+
+    contentList                    shift and go to state 55
+    content                        shift and go to state 9
+    empty                          shift and go to state 10
+    openStatement                  shift and go to state 11
+    closedStatement                shift and go to state 12
+    simpleStatement                shift and go to state 17
+    block                          shift and go to state 18
+    attribIdOrArray                shift and go to state 22
+
+state 27
+
+    (22) contentTail -> empty .
+
+    END             reduce using rule 22 (contentTail -> empty .)
+
+
+state 28
+
+    (25) openStatement -> IF booleanexpression . THEN content
+    (26) openStatement -> IF booleanexpression . THEN closedStatement ELSE openStatement
+    (31) closedStatement -> IF booleanexpression . THEN closedStatement ELSE closedStatement
+
+    THEN            shift and go to state 56
+
+
+state 29
+
+    (49) booleanexpression -> expression . booleanTail
+    (53) expression -> expression . oplp termo
+    (50) booleanTail -> . oplogico expression
+    (51) booleanTail -> . empty
+    (61) oplp -> . PLUS
+    (62) oplp -> . MINUS
+    (63) oplp -> . OR
+    (79) oplogico -> . EQUALS
+    (80) oplogico -> . GREATER
+    (81) oplogico -> . GE
+    (82) oplogico -> . LESSER
+    (83) oplogico -> . LE
+    (84) oplogico -> . NOTEQUAL
+    (85) empty -> .
+
+    PLUS            shift and go to state 61
+    MINUS           shift and go to state 62
+    OR              shift and go to state 63
+    EQUALS          shift and go to state 64
+    GREATER         shift and go to state 65
+    GE              shift and go to state 66
+    LESSER          shift and go to state 67
+    LE              shift and go to state 68
+    NOTEQUAL        shift and go to state 69
+    THEN            reduce using rule 85 (empty -> .)
+    DO              reduce using rule 85 (empty -> .)
+    RPARENT         reduce using rule 85 (empty -> .)
+
+    booleanTail                    shift and go to state 57
+    oplp                           shift and go to state 58
+    oplogico                       shift and go to state 59
+    empty                          shift and go to state 60
+
+state 30
+
+    (52) expression -> termo .
+    (55) termo -> termo . ophp fator
+    (56) ophp -> . TIMES
+    (57) ophp -> . DIV
+    (58) ophp -> . MOD
+    (59) ophp -> . AND
+    (60) ophp -> . DIVIDE
+
+    PLUS            reduce using rule 52 (expression -> termo .)
+    MINUS           reduce using rule 52 (expression -> termo .)
+    OR              reduce using rule 52 (expression -> termo .)
+    EQUALS          reduce using rule 52 (expression -> termo .)
+    GREATER         reduce using rule 52 (expression -> termo .)
+    GE              reduce using rule 52 (expression -> termo .)
+    LESSER          reduce using rule 52 (expression -> termo .)
+    LE              reduce using rule 52 (expression -> termo .)
+    NOTEQUAL        reduce using rule 52 (expression -> termo .)
+    THEN            reduce using rule 52 (expression -> termo .)
+    DO              reduce using rule 52 (expression -> termo .)
+    RPARENT         reduce using rule 52 (expression -> termo .)
+    RBRACKET        reduce using rule 52 (expression -> termo .)
+    SEMICOLON       reduce using rule 52 (expression -> termo .)
+    END             reduce using rule 52 (expression -> termo .)
+    ELSE            reduce using rule 52 (expression -> termo .)
+    TO              reduce using rule 52 (expression -> termo .)
+    DOWNTO          reduce using rule 52 (expression -> termo .)
+    TIMES           shift and go to state 71
+    DIV             shift and go to state 72
+    MOD             shift and go to state 73
+    AND             shift and go to state 74
+    DIVIDE          shift and go to state 75
+
+    ophp                           shift and go to state 70
+
+state 31
+
+    (54) termo -> fator .
+
+    TIMES           reduce using rule 54 (termo -> fator .)
+    DIV             reduce using rule 54 (termo -> fator .)
+    MOD             reduce using rule 54 (termo -> fator .)
+    AND             reduce using rule 54 (termo -> fator .)
+    DIVIDE          reduce using rule 54 (termo -> fator .)
+    PLUS            reduce using rule 54 (termo -> fator .)
+    MINUS           reduce using rule 54 (termo -> fator .)
+    OR              reduce using rule 54 (termo -> fator .)
+    EQUALS          reduce using rule 54 (termo -> fator .)
+    GREATER         reduce using rule 54 (termo -> fator .)
+    GE              reduce using rule 54 (termo -> fator .)
+    LESSER          reduce using rule 54 (termo -> fator .)
+    LE              reduce using rule 54 (termo -> fator .)
+    NOTEQUAL        reduce using rule 54 (termo -> fator .)
+    THEN            reduce using rule 54 (termo -> fator .)
+    DO              reduce using rule 54 (termo -> fator .)
+    RPARENT         reduce using rule 54 (termo -> fator .)
+    RBRACKET        reduce using rule 54 (termo -> fator .)
+    SEMICOLON       reduce using rule 54 (termo -> fator .)
+    END             reduce using rule 54 (termo -> fator .)
+    ELSE            reduce using rule 54 (termo -> fator .)
+    TO              reduce using rule 54 (termo -> fator .)
+    DOWNTO          reduce using rule 54 (termo -> fator .)
+
+
+state 32
+
+    (64) fator -> const .
+
+    TIMES           reduce using rule 64 (fator -> const .)
+    DIV             reduce using rule 64 (fator -> const .)
+    MOD             reduce using rule 64 (fator -> const .)
+    AND             reduce using rule 64 (fator -> const .)
+    DIVIDE          reduce using rule 64 (fator -> const .)
+    PLUS            reduce using rule 64 (fator -> const .)
+    MINUS           reduce using rule 64 (fator -> const .)
+    OR              reduce using rule 64 (fator -> const .)
+    EQUALS          reduce using rule 64 (fator -> const .)
+    GREATER         reduce using rule 64 (fator -> const .)
+    GE              reduce using rule 64 (fator -> const .)
+    LESSER          reduce using rule 64 (fator -> const .)
+    LE              reduce using rule 64 (fator -> const .)
+    NOTEQUAL        reduce using rule 64 (fator -> const .)
+    THEN            reduce using rule 64 (fator -> const .)
+    DO              reduce using rule 64 (fator -> const .)
+    RPARENT         reduce using rule 64 (fator -> const .)
+    RBRACKET        reduce using rule 64 (fator -> const .)
+    SEMICOLON       reduce using rule 64 (fator -> const .)
+    END             reduce using rule 64 (fator -> const .)
+    ELSE            reduce using rule 64 (fator -> const .)
+    TO              reduce using rule 64 (fator -> const .)
+    DOWNTO          reduce using rule 64 (fator -> const .)
+
+
+state 33
+
+    (65) fator -> var .
+
+    TIMES           reduce using rule 65 (fator -> var .)
+    DIV             reduce using rule 65 (fator -> var .)
+    MOD             reduce using rule 65 (fator -> var .)
+    AND             reduce using rule 65 (fator -> var .)
+    DIVIDE          reduce using rule 65 (fator -> var .)
+    PLUS            reduce using rule 65 (fator -> var .)
+    MINUS           reduce using rule 65 (fator -> var .)
+    OR              reduce using rule 65 (fator -> var .)
+    EQUALS          reduce using rule 65 (fator -> var .)
+    GREATER         reduce using rule 65 (fator -> var .)
+    GE              reduce using rule 65 (fator -> var .)
+    LESSER          reduce using rule 65 (fator -> var .)
+    LE              reduce using rule 65 (fator -> var .)
+    NOTEQUAL        reduce using rule 65 (fator -> var .)
+    THEN            reduce using rule 65 (fator -> var .)
+    DO              reduce using rule 65 (fator -> var .)
+    RPARENT         reduce using rule 65 (fator -> var .)
+    RBRACKET        reduce using rule 65 (fator -> var .)
+    SEMICOLON       reduce using rule 65 (fator -> var .)
+    END             reduce using rule 65 (fator -> var .)
+    ELSE            reduce using rule 65 (fator -> var .)
+    TO              reduce using rule 65 (fator -> var .)
+    DOWNTO          reduce using rule 65 (fator -> var .)
+
+
+state 34
+
+    (66) fator -> LPARENT . booleanexpression RPARENT
+    (49) booleanexpression -> . expression booleanTail
+    (52) expression -> . termo
+    (53) expression -> . expression oplp termo
+    (54) termo -> . fator
+    (55) termo -> . termo ophp fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    booleanexpression              shift and go to state 76
+    expression                     shift and go to state 29
+    termo                          shift and go to state 30
+    fator                          shift and go to state 31
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 35
+
+    (67) fator -> functioncall .
+
+    TIMES           reduce using rule 67 (fator -> functioncall .)
+    DIV             reduce using rule 67 (fator -> functioncall .)
+    MOD             reduce using rule 67 (fator -> functioncall .)
+    AND             reduce using rule 67 (fator -> functioncall .)
+    DIVIDE          reduce using rule 67 (fator -> functioncall .)
+    PLUS            reduce using rule 67 (fator -> functioncall .)
+    MINUS           reduce using rule 67 (fator -> functioncall .)
+    OR              reduce using rule 67 (fator -> functioncall .)
+    EQUALS          reduce using rule 67 (fator -> functioncall .)
+    GREATER         reduce using rule 67 (fator -> functioncall .)
+    GE              reduce using rule 67 (fator -> functioncall .)
+    LESSER          reduce using rule 67 (fator -> functioncall .)
+    LE              reduce using rule 67 (fator -> functioncall .)
+    NOTEQUAL        reduce using rule 67 (fator -> functioncall .)
+    THEN            reduce using rule 67 (fator -> functioncall .)
+    DO              reduce using rule 67 (fator -> functioncall .)
+    RPARENT         reduce using rule 67 (fator -> functioncall .)
+    RBRACKET        reduce using rule 67 (fator -> functioncall .)
+    SEMICOLON       reduce using rule 67 (fator -> functioncall .)
+    END             reduce using rule 67 (fator -> functioncall .)
+    ELSE            reduce using rule 67 (fator -> functioncall .)
+    TO              reduce using rule 67 (fator -> functioncall .)
+    DOWNTO          reduce using rule 67 (fator -> functioncall .)
+
+
+state 36
+
+    (68) fator -> NOT . fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    fator                          shift and go to state 77
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 37
+
+    (72) const -> NUMBER .
+
+    TIMES           reduce using rule 72 (const -> NUMBER .)
+    DIV             reduce using rule 72 (const -> NUMBER .)
+    MOD             reduce using rule 72 (const -> NUMBER .)
+    AND             reduce using rule 72 (const -> NUMBER .)
+    DIVIDE          reduce using rule 72 (const -> NUMBER .)
+    PLUS            reduce using rule 72 (const -> NUMBER .)
+    MINUS           reduce using rule 72 (const -> NUMBER .)
+    OR              reduce using rule 72 (const -> NUMBER .)
+    EQUALS          reduce using rule 72 (const -> NUMBER .)
+    GREATER         reduce using rule 72 (const -> NUMBER .)
+    GE              reduce using rule 72 (const -> NUMBER .)
+    LESSER          reduce using rule 72 (const -> NUMBER .)
+    LE              reduce using rule 72 (const -> NUMBER .)
+    NOTEQUAL        reduce using rule 72 (const -> NUMBER .)
+    THEN            reduce using rule 72 (const -> NUMBER .)
+    DO              reduce using rule 72 (const -> NUMBER .)
+    RPARENT         reduce using rule 72 (const -> NUMBER .)
+    RBRACKET        reduce using rule 72 (const -> NUMBER .)
+    SEMICOLON       reduce using rule 72 (const -> NUMBER .)
+    END             reduce using rule 72 (const -> NUMBER .)
+    ELSE            reduce using rule 72 (const -> NUMBER .)
+    TO              reduce using rule 72 (const -> NUMBER .)
+    DOWNTO          reduce using rule 72 (const -> NUMBER .)
+
+
+state 38
+
+    (73) const -> FRASE .
+
+    TIMES           reduce using rule 73 (const -> FRASE .)
+    DIV             reduce using rule 73 (const -> FRASE .)
+    MOD             reduce using rule 73 (const -> FRASE .)
+    AND             reduce using rule 73 (const -> FRASE .)
+    DIVIDE          reduce using rule 73 (const -> FRASE .)
+    PLUS            reduce using rule 73 (const -> FRASE .)
+    MINUS           reduce using rule 73 (const -> FRASE .)
+    OR              reduce using rule 73 (const -> FRASE .)
+    EQUALS          reduce using rule 73 (const -> FRASE .)
+    GREATER         reduce using rule 73 (const -> FRASE .)
+    GE              reduce using rule 73 (const -> FRASE .)
+    LESSER          reduce using rule 73 (const -> FRASE .)
+    LE              reduce using rule 73 (const -> FRASE .)
+    NOTEQUAL        reduce using rule 73 (const -> FRASE .)
+    THEN            reduce using rule 73 (const -> FRASE .)
+    DO              reduce using rule 73 (const -> FRASE .)
+    RPARENT         reduce using rule 73 (const -> FRASE .)
+    RBRACKET        reduce using rule 73 (const -> FRASE .)
+    SEMICOLON       reduce using rule 73 (const -> FRASE .)
+    END             reduce using rule 73 (const -> FRASE .)
+    ELSE            reduce using rule 73 (const -> FRASE .)
+    TO              reduce using rule 73 (const -> FRASE .)
+    DOWNTO          reduce using rule 73 (const -> FRASE .)
+
+
+state 39
+
+    (74) const -> TRUE .
+
+    TIMES           reduce using rule 74 (const -> TRUE .)
+    DIV             reduce using rule 74 (const -> TRUE .)
+    MOD             reduce using rule 74 (const -> TRUE .)
+    AND             reduce using rule 74 (const -> TRUE .)
+    DIVIDE          reduce using rule 74 (const -> TRUE .)
+    PLUS            reduce using rule 74 (const -> TRUE .)
+    MINUS           reduce using rule 74 (const -> TRUE .)
+    OR              reduce using rule 74 (const -> TRUE .)
+    EQUALS          reduce using rule 74 (const -> TRUE .)
+    GREATER         reduce using rule 74 (const -> TRUE .)
+    GE              reduce using rule 74 (const -> TRUE .)
+    LESSER          reduce using rule 74 (const -> TRUE .)
+    LE              reduce using rule 74 (const -> TRUE .)
+    NOTEQUAL        reduce using rule 74 (const -> TRUE .)
+    THEN            reduce using rule 74 (const -> TRUE .)
+    DO              reduce using rule 74 (const -> TRUE .)
+    RPARENT         reduce using rule 74 (const -> TRUE .)
+    RBRACKET        reduce using rule 74 (const -> TRUE .)
+    SEMICOLON       reduce using rule 74 (const -> TRUE .)
+    END             reduce using rule 74 (const -> TRUE .)
+    ELSE            reduce using rule 74 (const -> TRUE .)
+    TO              reduce using rule 74 (const -> TRUE .)
+    DOWNTO          reduce using rule 74 (const -> TRUE .)
+
+
+state 40
+
+    (75) const -> FALSE .
+
+    TIMES           reduce using rule 75 (const -> FALSE .)
+    DIV             reduce using rule 75 (const -> FALSE .)
+    MOD             reduce using rule 75 (const -> FALSE .)
+    AND             reduce using rule 75 (const -> FALSE .)
+    DIVIDE          reduce using rule 75 (const -> FALSE .)
+    PLUS            reduce using rule 75 (const -> FALSE .)
+    MINUS           reduce using rule 75 (const -> FALSE .)
+    OR              reduce using rule 75 (const -> FALSE .)
+    EQUALS          reduce using rule 75 (const -> FALSE .)
+    GREATER         reduce using rule 75 (const -> FALSE .)
+    GE              reduce using rule 75 (const -> FALSE .)
+    LESSER          reduce using rule 75 (const -> FALSE .)
+    LE              reduce using rule 75 (const -> FALSE .)
+    NOTEQUAL        reduce using rule 75 (const -> FALSE .)
+    THEN            reduce using rule 75 (const -> FALSE .)
+    DO              reduce using rule 75 (const -> FALSE .)
+    RPARENT         reduce using rule 75 (const -> FALSE .)
+    RBRACKET        reduce using rule 75 (const -> FALSE .)
+    SEMICOLON       reduce using rule 75 (const -> FALSE .)
+    END             reduce using rule 75 (const -> FALSE .)
+    ELSE            reduce using rule 75 (const -> FALSE .)
+    TO              reduce using rule 75 (const -> FALSE .)
+    DOWNTO          reduce using rule 75 (const -> FALSE .)
+
+
+state 41
+
+    (76) var -> ID . varTail
+    (77) varTail -> . LBRACKET expression RBRACKET
+    (78) varTail -> . empty
+    (85) empty -> .
+
+    LBRACKET        shift and go to state 79
+    TIMES           reduce using rule 85 (empty -> .)
+    DIV             reduce using rule 85 (empty -> .)
+    MOD             reduce using rule 85 (empty -> .)
+    AND             reduce using rule 85 (empty -> .)
+    DIVIDE          reduce using rule 85 (empty -> .)
+    PLUS            reduce using rule 85 (empty -> .)
+    MINUS           reduce using rule 85 (empty -> .)
+    OR              reduce using rule 85 (empty -> .)
+    EQUALS          reduce using rule 85 (empty -> .)
+    GREATER         reduce using rule 85 (empty -> .)
+    GE              reduce using rule 85 (empty -> .)
+    LESSER          reduce using rule 85 (empty -> .)
+    LE              reduce using rule 85 (empty -> .)
+    NOTEQUAL        reduce using rule 85 (empty -> .)
+    THEN            reduce using rule 85 (empty -> .)
+    DO              reduce using rule 85 (empty -> .)
+    RPARENT         reduce using rule 85 (empty -> .)
+    RBRACKET        reduce using rule 85 (empty -> .)
+    SEMICOLON       reduce using rule 85 (empty -> .)
+    END             reduce using rule 85 (empty -> .)
+    ELSE            reduce using rule 85 (empty -> .)
+    TO              reduce using rule 85 (empty -> .)
+    DOWNTO          reduce using rule 85 (empty -> .)
+
+    varTail                        shift and go to state 78
+    empty                          shift and go to state 80
+
+state 42
+
+    (69) functioncall -> LENGTH . LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 81
+
+
+state 43
+
+    (27) openStatement -> WHILE booleanexpression . DO openStatement
+    (32) closedStatement -> WHILE booleanexpression . DO closedStatement
+
+    DO              shift and go to state 82
+
+
+state 44
+
+    (28) openStatement -> FOR ID . ATTRIB expression forDirection expression DO openStatement
+    (33) closedStatement -> FOR ID . ATTRIB expression forDirection expression DO closedStatement
+
+    ATTRIB          shift and go to state 83
+
+
+state 45
+
+    (46) attribIdOrArray -> ID idTail .
+
+    ATTRIB          reduce using rule 46 (attribIdOrArray -> ID idTail .)
+
+
+state 46
+
+    (43) idTail -> LBRACKET . expression RBRACKET
+    (52) expression -> . termo
+    (53) expression -> . expression oplp termo
+    (54) termo -> . fator
+    (55) termo -> . termo ophp fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    expression                     shift and go to state 84
+    termo                          shift and go to state 30
+    fator                          shift and go to state 31
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 47
+
+    (44) idTail -> empty .
+
+    ATTRIB          reduce using rule 44 (idTail -> empty .)
+    COMMA           reduce using rule 44 (idTail -> empty .)
+    RPARENT         reduce using rule 44 (idTail -> empty .)
+
+
+state 48
+
+    (34) simpleStatement -> WRITELN LPARENT . writeArgs RPARENT
+    (36) writeArgs -> . singleArg moreArgs
+    (39) singleArg -> . FRASE
+    (40) singleArg -> . ID idTail
+
+    FRASE           shift and go to state 87
+    ID              shift and go to state 88
+
+    writeArgs                      shift and go to state 85
+    singleArg                      shift and go to state 86
+
+state 49
+
+    (35) simpleStatement -> WRITE LPARENT . writeArgs RPARENT
+    (36) writeArgs -> . singleArg moreArgs
+    (39) singleArg -> . FRASE
+    (40) singleArg -> . ID idTail
+
+    FRASE           shift and go to state 87
+    ID              shift and go to state 88
+
+    writeArgs                      shift and go to state 89
+    singleArg                      shift and go to state 86
+
+state 50
+
+    (41) simpleStatement -> READLN LPARENT . readIdOrArray RPARENT
+    (42) readIdOrArray -> . ID idTail
+
+    ID              shift and go to state 91
+
+    readIdOrArray                  shift and go to state 90
+
+state 51
+
+    (45) simpleStatement -> attribIdOrArray ATTRIB . expression
+    (52) expression -> . termo
+    (53) expression -> . expression oplp termo
+    (54) termo -> . fator
+    (55) termo -> . termo ophp fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    expression                     shift and go to state 92
+    termo                          shift and go to state 30
+    fator                          shift and go to state 31
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 52
+
+    (2) header -> PROGRAM ID SEMICOLON variables .
+
+    BEGIN           reduce using rule 2 (header -> PROGRAM ID SEMICOLON variables .)
+
+
+state 53
+
+    (3) variables -> VAR . varDecls
+    (5) varDecls -> . varDeclaration varDecls
+    (6) varDecls -> . empty
+    (7) varDeclaration -> . idList COLON type SEMICOLON
+    (85) empty -> .
+    (8) idList -> . ID idListTail
+
+    BEGIN           reduce using rule 85 (empty -> .)
+    ID              shift and go to state 97
+
+    varDecls                       shift and go to state 93
+    varDeclaration                 shift and go to state 94
+    empty                          shift and go to state 95
+    idList                         shift and go to state 96
+
+state 54
+
+    (4) variables -> empty .
+
+    BEGIN           reduce using rule 4 (variables -> empty .)
+
+
+state 55
+
+    (21) contentTail -> SEMICOLON contentList .
+
+    END             reduce using rule 21 (contentTail -> SEMICOLON contentList .)
+
+
+state 56
+
+    (25) openStatement -> IF booleanexpression THEN . content
+    (26) openStatement -> IF booleanexpression THEN . closedStatement ELSE openStatement
+    (31) closedStatement -> IF booleanexpression THEN . closedStatement ELSE closedStatement
+    (23) content -> . openStatement
+    (24) content -> . closedStatement
+    (29) closedStatement -> . simpleStatement
+    (30) closedStatement -> . block
+    (31) closedStatement -> . IF booleanexpression THEN closedStatement ELSE closedStatement
+    (32) closedStatement -> . WHILE booleanexpression DO closedStatement
+    (33) closedStatement -> . FOR ID ATTRIB expression forDirection expression DO closedStatement
+    (25) openStatement -> . IF booleanexpression THEN content
+    (26) openStatement -> . IF booleanexpression THEN closedStatement ELSE openStatement
+    (27) openStatement -> . WHILE booleanexpression DO openStatement
+    (28) openStatement -> . FOR ID ATTRIB expression forDirection expression DO openStatement
+    (34) simpleStatement -> . WRITELN LPARENT writeArgs RPARENT
+    (35) simpleStatement -> . WRITE LPARENT writeArgs RPARENT
+    (41) simpleStatement -> . READLN LPARENT readIdOrArray RPARENT
+    (45) simpleStatement -> . attribIdOrArray ATTRIB expression
+    (18) block -> . BEGIN contentList END
+    (46) attribIdOrArray -> . ID idTail
+
+    IF              shift and go to state 98
+    WHILE           shift and go to state 101
+    FOR             shift and go to state 102
+    WRITELN         shift and go to state 19
+    WRITE           shift and go to state 20
+    READLN          shift and go to state 21
+    BEGIN           shift and go to state 5
+    ID              shift and go to state 16
+
+    content                        shift and go to state 99
+    closedStatement                shift and go to state 100
+    openStatement                  shift and go to state 11
+    simpleStatement                shift and go to state 17
+    block                          shift and go to state 18
+    attribIdOrArray                shift and go to state 22
+
+state 57
+
+    (49) booleanexpression -> expression booleanTail .
+
+    THEN            reduce using rule 49 (booleanexpression -> expression booleanTail .)
+    DO              reduce using rule 49 (booleanexpression -> expression booleanTail .)
+    RPARENT         reduce using rule 49 (booleanexpression -> expression booleanTail .)
+
+
+state 58
+
+    (53) expression -> expression oplp . termo
+    (54) termo -> . fator
+    (55) termo -> . termo ophp fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    termo                          shift and go to state 103
+    fator                          shift and go to state 31
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 59
+
+    (50) booleanTail -> oplogico . expression
+    (52) expression -> . termo
+    (53) expression -> . expression oplp termo
+    (54) termo -> . fator
+    (55) termo -> . termo ophp fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    expression                     shift and go to state 104
+    termo                          shift and go to state 30
+    fator                          shift and go to state 31
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 60
+
+    (51) booleanTail -> empty .
+
+    THEN            reduce using rule 51 (booleanTail -> empty .)
+    DO              reduce using rule 51 (booleanTail -> empty .)
+    RPARENT         reduce using rule 51 (booleanTail -> empty .)
+
+
+state 61
+
+    (61) oplp -> PLUS .
+
+    LPARENT         reduce using rule 61 (oplp -> PLUS .)
+    NOT             reduce using rule 61 (oplp -> PLUS .)
+    NUMBER          reduce using rule 61 (oplp -> PLUS .)
+    FRASE           reduce using rule 61 (oplp -> PLUS .)
+    TRUE            reduce using rule 61 (oplp -> PLUS .)
+    FALSE           reduce using rule 61 (oplp -> PLUS .)
+    ID              reduce using rule 61 (oplp -> PLUS .)
+    LENGTH          reduce using rule 61 (oplp -> PLUS .)
+
+
+state 62
+
+    (62) oplp -> MINUS .
+
+    LPARENT         reduce using rule 62 (oplp -> MINUS .)
+    NOT             reduce using rule 62 (oplp -> MINUS .)
+    NUMBER          reduce using rule 62 (oplp -> MINUS .)
+    FRASE           reduce using rule 62 (oplp -> MINUS .)
+    TRUE            reduce using rule 62 (oplp -> MINUS .)
+    FALSE           reduce using rule 62 (oplp -> MINUS .)
+    ID              reduce using rule 62 (oplp -> MINUS .)
+    LENGTH          reduce using rule 62 (oplp -> MINUS .)
+
+
+state 63
+
+    (63) oplp -> OR .
+
+    LPARENT         reduce using rule 63 (oplp -> OR .)
+    NOT             reduce using rule 63 (oplp -> OR .)
+    NUMBER          reduce using rule 63 (oplp -> OR .)
+    FRASE           reduce using rule 63 (oplp -> OR .)
+    TRUE            reduce using rule 63 (oplp -> OR .)
+    FALSE           reduce using rule 63 (oplp -> OR .)
+    ID              reduce using rule 63 (oplp -> OR .)
+    LENGTH          reduce using rule 63 (oplp -> OR .)
+
+
+state 64
+
+    (79) oplogico -> EQUALS .
+
+    LPARENT         reduce using rule 79 (oplogico -> EQUALS .)
+    NOT             reduce using rule 79 (oplogico -> EQUALS .)
+    NUMBER          reduce using rule 79 (oplogico -> EQUALS .)
+    FRASE           reduce using rule 79 (oplogico -> EQUALS .)
+    TRUE            reduce using rule 79 (oplogico -> EQUALS .)
+    FALSE           reduce using rule 79 (oplogico -> EQUALS .)
+    ID              reduce using rule 79 (oplogico -> EQUALS .)
+    LENGTH          reduce using rule 79 (oplogico -> EQUALS .)
+
+
+state 65
+
+    (80) oplogico -> GREATER .
+
+    LPARENT         reduce using rule 80 (oplogico -> GREATER .)
+    NOT             reduce using rule 80 (oplogico -> GREATER .)
+    NUMBER          reduce using rule 80 (oplogico -> GREATER .)
+    FRASE           reduce using rule 80 (oplogico -> GREATER .)
+    TRUE            reduce using rule 80 (oplogico -> GREATER .)
+    FALSE           reduce using rule 80 (oplogico -> GREATER .)
+    ID              reduce using rule 80 (oplogico -> GREATER .)
+    LENGTH          reduce using rule 80 (oplogico -> GREATER .)
+
+
+state 66
+
+    (81) oplogico -> GE .
+
+    LPARENT         reduce using rule 81 (oplogico -> GE .)
+    NOT             reduce using rule 81 (oplogico -> GE .)
+    NUMBER          reduce using rule 81 (oplogico -> GE .)
+    FRASE           reduce using rule 81 (oplogico -> GE .)
+    TRUE            reduce using rule 81 (oplogico -> GE .)
+    FALSE           reduce using rule 81 (oplogico -> GE .)
+    ID              reduce using rule 81 (oplogico -> GE .)
+    LENGTH          reduce using rule 81 (oplogico -> GE .)
+
+
+state 67
+
+    (82) oplogico -> LESSER .
+
+    LPARENT         reduce using rule 82 (oplogico -> LESSER .)
+    NOT             reduce using rule 82 (oplogico -> LESSER .)
+    NUMBER          reduce using rule 82 (oplogico -> LESSER .)
+    FRASE           reduce using rule 82 (oplogico -> LESSER .)
+    TRUE            reduce using rule 82 (oplogico -> LESSER .)
+    FALSE           reduce using rule 82 (oplogico -> LESSER .)
+    ID              reduce using rule 82 (oplogico -> LESSER .)
+    LENGTH          reduce using rule 82 (oplogico -> LESSER .)
+
+
+state 68
+
+    (83) oplogico -> LE .
+
+    LPARENT         reduce using rule 83 (oplogico -> LE .)
+    NOT             reduce using rule 83 (oplogico -> LE .)
+    NUMBER          reduce using rule 83 (oplogico -> LE .)
+    FRASE           reduce using rule 83 (oplogico -> LE .)
+    TRUE            reduce using rule 83 (oplogico -> LE .)
+    FALSE           reduce using rule 83 (oplogico -> LE .)
+    ID              reduce using rule 83 (oplogico -> LE .)
+    LENGTH          reduce using rule 83 (oplogico -> LE .)
+
+
+state 69
+
+    (84) oplogico -> NOTEQUAL .
+
+    LPARENT         reduce using rule 84 (oplogico -> NOTEQUAL .)
+    NOT             reduce using rule 84 (oplogico -> NOTEQUAL .)
+    NUMBER          reduce using rule 84 (oplogico -> NOTEQUAL .)
+    FRASE           reduce using rule 84 (oplogico -> NOTEQUAL .)
+    TRUE            reduce using rule 84 (oplogico -> NOTEQUAL .)
+    FALSE           reduce using rule 84 (oplogico -> NOTEQUAL .)
+    ID              reduce using rule 84 (oplogico -> NOTEQUAL .)
+    LENGTH          reduce using rule 84 (oplogico -> NOTEQUAL .)
+
+
+state 70
+
+    (55) termo -> termo ophp . fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    fator                          shift and go to state 105
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 71
+
+    (56) ophp -> TIMES .
+
+    LPARENT         reduce using rule 56 (ophp -> TIMES .)
+    NOT             reduce using rule 56 (ophp -> TIMES .)
+    NUMBER          reduce using rule 56 (ophp -> TIMES .)
+    FRASE           reduce using rule 56 (ophp -> TIMES .)
+    TRUE            reduce using rule 56 (ophp -> TIMES .)
+    FALSE           reduce using rule 56 (ophp -> TIMES .)
+    ID              reduce using rule 56 (ophp -> TIMES .)
+    LENGTH          reduce using rule 56 (ophp -> TIMES .)
+
+
+state 72
+
+    (57) ophp -> DIV .
+
+    LPARENT         reduce using rule 57 (ophp -> DIV .)
+    NOT             reduce using rule 57 (ophp -> DIV .)
+    NUMBER          reduce using rule 57 (ophp -> DIV .)
+    FRASE           reduce using rule 57 (ophp -> DIV .)
+    TRUE            reduce using rule 57 (ophp -> DIV .)
+    FALSE           reduce using rule 57 (ophp -> DIV .)
+    ID              reduce using rule 57 (ophp -> DIV .)
+    LENGTH          reduce using rule 57 (ophp -> DIV .)
+
+
+state 73
+
+    (58) ophp -> MOD .
+
+    LPARENT         reduce using rule 58 (ophp -> MOD .)
+    NOT             reduce using rule 58 (ophp -> MOD .)
+    NUMBER          reduce using rule 58 (ophp -> MOD .)
+    FRASE           reduce using rule 58 (ophp -> MOD .)
+    TRUE            reduce using rule 58 (ophp -> MOD .)
+    FALSE           reduce using rule 58 (ophp -> MOD .)
+    ID              reduce using rule 58 (ophp -> MOD .)
+    LENGTH          reduce using rule 58 (ophp -> MOD .)
+
+
+state 74
+
+    (59) ophp -> AND .
+
+    LPARENT         reduce using rule 59 (ophp -> AND .)
+    NOT             reduce using rule 59 (ophp -> AND .)
+    NUMBER          reduce using rule 59 (ophp -> AND .)
+    FRASE           reduce using rule 59 (ophp -> AND .)
+    TRUE            reduce using rule 59 (ophp -> AND .)
+    FALSE           reduce using rule 59 (ophp -> AND .)
+    ID              reduce using rule 59 (ophp -> AND .)
+    LENGTH          reduce using rule 59 (ophp -> AND .)
+
+
+state 75
+
+    (60) ophp -> DIVIDE .
+
+    LPARENT         reduce using rule 60 (ophp -> DIVIDE .)
+    NOT             reduce using rule 60 (ophp -> DIVIDE .)
+    NUMBER          reduce using rule 60 (ophp -> DIVIDE .)
+    FRASE           reduce using rule 60 (ophp -> DIVIDE .)
+    TRUE            reduce using rule 60 (ophp -> DIVIDE .)
+    FALSE           reduce using rule 60 (ophp -> DIVIDE .)
+    ID              reduce using rule 60 (ophp -> DIVIDE .)
+    LENGTH          reduce using rule 60 (ophp -> DIVIDE .)
+
+
+state 76
+
+    (66) fator -> LPARENT booleanexpression . RPARENT
+
+    RPARENT         shift and go to state 106
+
+
+state 77
+
+    (68) fator -> NOT fator .
+
+    TIMES           reduce using rule 68 (fator -> NOT fator .)
+    DIV             reduce using rule 68 (fator -> NOT fator .)
+    MOD             reduce using rule 68 (fator -> NOT fator .)
+    AND             reduce using rule 68 (fator -> NOT fator .)
+    DIVIDE          reduce using rule 68 (fator -> NOT fator .)
+    PLUS            reduce using rule 68 (fator -> NOT fator .)
+    MINUS           reduce using rule 68 (fator -> NOT fator .)
+    OR              reduce using rule 68 (fator -> NOT fator .)
+    EQUALS          reduce using rule 68 (fator -> NOT fator .)
+    GREATER         reduce using rule 68 (fator -> NOT fator .)
+    GE              reduce using rule 68 (fator -> NOT fator .)
+    LESSER          reduce using rule 68 (fator -> NOT fator .)
+    LE              reduce using rule 68 (fator -> NOT fator .)
+    NOTEQUAL        reduce using rule 68 (fator -> NOT fator .)
+    THEN            reduce using rule 68 (fator -> NOT fator .)
+    DO              reduce using rule 68 (fator -> NOT fator .)
+    RPARENT         reduce using rule 68 (fator -> NOT fator .)
+    RBRACKET        reduce using rule 68 (fator -> NOT fator .)
+    SEMICOLON       reduce using rule 68 (fator -> NOT fator .)
+    END             reduce using rule 68 (fator -> NOT fator .)
+    ELSE            reduce using rule 68 (fator -> NOT fator .)
+    TO              reduce using rule 68 (fator -> NOT fator .)
+    DOWNTO          reduce using rule 68 (fator -> NOT fator .)
+
+
+state 78
+
+    (76) var -> ID varTail .
+
+    TIMES           reduce using rule 76 (var -> ID varTail .)
+    DIV             reduce using rule 76 (var -> ID varTail .)
+    MOD             reduce using rule 76 (var -> ID varTail .)
+    AND             reduce using rule 76 (var -> ID varTail .)
+    DIVIDE          reduce using rule 76 (var -> ID varTail .)
+    PLUS            reduce using rule 76 (var -> ID varTail .)
+    MINUS           reduce using rule 76 (var -> ID varTail .)
+    OR              reduce using rule 76 (var -> ID varTail .)
+    EQUALS          reduce using rule 76 (var -> ID varTail .)
+    GREATER         reduce using rule 76 (var -> ID varTail .)
+    GE              reduce using rule 76 (var -> ID varTail .)
+    LESSER          reduce using rule 76 (var -> ID varTail .)
+    LE              reduce using rule 76 (var -> ID varTail .)
+    NOTEQUAL        reduce using rule 76 (var -> ID varTail .)
+    THEN            reduce using rule 76 (var -> ID varTail .)
+    DO              reduce using rule 76 (var -> ID varTail .)
+    RPARENT         reduce using rule 76 (var -> ID varTail .)
+    RBRACKET        reduce using rule 76 (var -> ID varTail .)
+    SEMICOLON       reduce using rule 76 (var -> ID varTail .)
+    END             reduce using rule 76 (var -> ID varTail .)
+    ELSE            reduce using rule 76 (var -> ID varTail .)
+    TO              reduce using rule 76 (var -> ID varTail .)
+    DOWNTO          reduce using rule 76 (var -> ID varTail .)
+
+
+state 79
+
+    (77) varTail -> LBRACKET . expression RBRACKET
+    (52) expression -> . termo
+    (53) expression -> . expression oplp termo
+    (54) termo -> . fator
+    (55) termo -> . termo ophp fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    expression                     shift and go to state 107
+    termo                          shift and go to state 30
+    fator                          shift and go to state 31
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 80
+
+    (78) varTail -> empty .
+
+    TIMES           reduce using rule 78 (varTail -> empty .)
+    DIV             reduce using rule 78 (varTail -> empty .)
+    MOD             reduce using rule 78 (varTail -> empty .)
+    AND             reduce using rule 78 (varTail -> empty .)
+    DIVIDE          reduce using rule 78 (varTail -> empty .)
+    PLUS            reduce using rule 78 (varTail -> empty .)
+    MINUS           reduce using rule 78 (varTail -> empty .)
+    OR              reduce using rule 78 (varTail -> empty .)
+    EQUALS          reduce using rule 78 (varTail -> empty .)
+    GREATER         reduce using rule 78 (varTail -> empty .)
+    GE              reduce using rule 78 (varTail -> empty .)
+    LESSER          reduce using rule 78 (varTail -> empty .)
+    LE              reduce using rule 78 (varTail -> empty .)
+    NOTEQUAL        reduce using rule 78 (varTail -> empty .)
+    THEN            reduce using rule 78 (varTail -> empty .)
+    DO              reduce using rule 78 (varTail -> empty .)
+    RPARENT         reduce using rule 78 (varTail -> empty .)
+    RBRACKET        reduce using rule 78 (varTail -> empty .)
+    SEMICOLON       reduce using rule 78 (varTail -> empty .)
+    END             reduce using rule 78 (varTail -> empty .)
+    ELSE            reduce using rule 78 (varTail -> empty .)
+    TO              reduce using rule 78 (varTail -> empty .)
+    DOWNTO          reduce using rule 78 (varTail -> empty .)
+
+
+state 81
+
+    (69) functioncall -> LENGTH LPARENT . arguments RPARENT
+    (70) arguments -> . ID
+    (71) arguments -> . FRASE
+
+    ID              shift and go to state 109
+    FRASE           shift and go to state 110
+
+    arguments                      shift and go to state 108
+
+state 82
+
+    (27) openStatement -> WHILE booleanexpression DO . openStatement
+    (32) closedStatement -> WHILE booleanexpression DO . closedStatement
+    (25) openStatement -> . IF booleanexpression THEN content
+    (26) openStatement -> . IF booleanexpression THEN closedStatement ELSE openStatement
+    (27) openStatement -> . WHILE booleanexpression DO openStatement
+    (28) openStatement -> . FOR ID ATTRIB expression forDirection expression DO openStatement
+    (29) closedStatement -> . simpleStatement
+    (30) closedStatement -> . block
+    (31) closedStatement -> . IF booleanexpression THEN closedStatement ELSE closedStatement
+    (32) closedStatement -> . WHILE booleanexpression DO closedStatement
+    (33) closedStatement -> . FOR ID ATTRIB expression forDirection expression DO closedStatement
+    (34) simpleStatement -> . WRITELN LPARENT writeArgs RPARENT
+    (35) simpleStatement -> . WRITE LPARENT writeArgs RPARENT
+    (41) simpleStatement -> . READLN LPARENT readIdOrArray RPARENT
+    (45) simpleStatement -> . attribIdOrArray ATTRIB expression
+    (18) block -> . BEGIN contentList END
+    (46) attribIdOrArray -> . ID idTail
+
+    IF              shift and go to state 13
+    WHILE           shift and go to state 14
+    FOR             shift and go to state 15
+    WRITELN         shift and go to state 19
+    WRITE           shift and go to state 20
+    READLN          shift and go to state 21
+    BEGIN           shift and go to state 5
+    ID              shift and go to state 16
+
+    openStatement                  shift and go to state 111
+    closedStatement                shift and go to state 112
+    simpleStatement                shift and go to state 17
+    block                          shift and go to state 18
+    attribIdOrArray                shift and go to state 22
+
+state 83
+
+    (28) openStatement -> FOR ID ATTRIB . expression forDirection expression DO openStatement
+    (33) closedStatement -> FOR ID ATTRIB . expression forDirection expression DO closedStatement
+    (52) expression -> . termo
+    (53) expression -> . expression oplp termo
+    (54) termo -> . fator
+    (55) termo -> . termo ophp fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    expression                     shift and go to state 113
+    termo                          shift and go to state 30
+    fator                          shift and go to state 31
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 84
+
+    (43) idTail -> LBRACKET expression . RBRACKET
+    (53) expression -> expression . oplp termo
+    (61) oplp -> . PLUS
+    (62) oplp -> . MINUS
+    (63) oplp -> . OR
+
+    RBRACKET        shift and go to state 114
+    PLUS            shift and go to state 61
+    MINUS           shift and go to state 62
+    OR              shift and go to state 63
+
+    oplp                           shift and go to state 58
+
+state 85
+
+    (34) simpleStatement -> WRITELN LPARENT writeArgs . RPARENT
+
+    RPARENT         shift and go to state 115
+
+
+state 86
+
+    (36) writeArgs -> singleArg . moreArgs
+    (37) moreArgs -> . COMMA singleArg moreArgs
+    (38) moreArgs -> . empty
+    (85) empty -> .
+
+    COMMA           shift and go to state 117
+    RPARENT         reduce using rule 85 (empty -> .)
+
+    moreArgs                       shift and go to state 116
+    empty                          shift and go to state 118
+
+state 87
+
+    (39) singleArg -> FRASE .
+
+    COMMA           reduce using rule 39 (singleArg -> FRASE .)
+    RPARENT         reduce using rule 39 (singleArg -> FRASE .)
+
+
+state 88
+
+    (40) singleArg -> ID . idTail
+    (43) idTail -> . LBRACKET expression RBRACKET
+    (44) idTail -> . empty
+    (85) empty -> .
+
+    LBRACKET        shift and go to state 46
+    COMMA           reduce using rule 85 (empty -> .)
+    RPARENT         reduce using rule 85 (empty -> .)
+
+    idTail                         shift and go to state 119
+    empty                          shift and go to state 47
+
+state 89
+
+    (35) simpleStatement -> WRITE LPARENT writeArgs . RPARENT
+
+    RPARENT         shift and go to state 120
+
+
+state 90
+
+    (41) simpleStatement -> READLN LPARENT readIdOrArray . RPARENT
+
+    RPARENT         shift and go to state 121
+
+
+state 91
+
+    (42) readIdOrArray -> ID . idTail
+    (43) idTail -> . LBRACKET expression RBRACKET
+    (44) idTail -> . empty
+    (85) empty -> .
+
+    LBRACKET        shift and go to state 46
+    RPARENT         reduce using rule 85 (empty -> .)
+
+    idTail                         shift and go to state 122
+    empty                          shift and go to state 47
+
+state 92
+
+    (45) simpleStatement -> attribIdOrArray ATTRIB expression .
+    (53) expression -> expression . oplp termo
+    (61) oplp -> . PLUS
+    (62) oplp -> . MINUS
+    (63) oplp -> . OR
+
+    SEMICOLON       reduce using rule 45 (simpleStatement -> attribIdOrArray ATTRIB expression .)
+    END             reduce using rule 45 (simpleStatement -> attribIdOrArray ATTRIB expression .)
+    ELSE            reduce using rule 45 (simpleStatement -> attribIdOrArray ATTRIB expression .)
+    PLUS            shift and go to state 61
+    MINUS           shift and go to state 62
+    OR              shift and go to state 63
+
+    oplp                           shift and go to state 58
+
+state 93
+
+    (3) variables -> VAR varDecls .
+
+    BEGIN           reduce using rule 3 (variables -> VAR varDecls .)
+
+
+state 94
+
+    (5) varDecls -> varDeclaration . varDecls
+    (5) varDecls -> . varDeclaration varDecls
+    (6) varDecls -> . empty
+    (7) varDeclaration -> . idList COLON type SEMICOLON
+    (85) empty -> .
+    (8) idList -> . ID idListTail
+
+    BEGIN           reduce using rule 85 (empty -> .)
+    ID              shift and go to state 97
+
+    varDeclaration                 shift and go to state 94
+    varDecls                       shift and go to state 123
+    empty                          shift and go to state 95
+    idList                         shift and go to state 96
+
+state 95
+
+    (6) varDecls -> empty .
+
+    BEGIN           reduce using rule 6 (varDecls -> empty .)
+
+
+state 96
+
+    (7) varDeclaration -> idList . COLON type SEMICOLON
+
+    COLON           shift and go to state 124
+
+
+state 97
+
+    (8) idList -> ID . idListTail
+    (9) idListTail -> . COMMA ID idListTail
+    (10) idListTail -> . empty
+    (85) empty -> .
+
+    COMMA           shift and go to state 126
+    COLON           reduce using rule 85 (empty -> .)
+
+    idListTail                     shift and go to state 125
+    empty                          shift and go to state 127
+
+state 98
+
+    (31) closedStatement -> IF . booleanexpression THEN closedStatement ELSE closedStatement
+    (25) openStatement -> IF . booleanexpression THEN content
+    (26) openStatement -> IF . booleanexpression THEN closedStatement ELSE openStatement
+    (49) booleanexpression -> . expression booleanTail
+    (52) expression -> . termo
+    (53) expression -> . expression oplp termo
+    (54) termo -> . fator
+    (55) termo -> . termo ophp fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    booleanexpression              shift and go to state 128
+    expression                     shift and go to state 29
+    termo                          shift and go to state 30
+    fator                          shift and go to state 31
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 99
+
+    (25) openStatement -> IF booleanexpression THEN content .
+
+    SEMICOLON       reduce using rule 25 (openStatement -> IF booleanexpression THEN content .)
+    END             reduce using rule 25 (openStatement -> IF booleanexpression THEN content .)
+
+
+state 100
+
+    (26) openStatement -> IF booleanexpression THEN closedStatement . ELSE openStatement
+    (31) closedStatement -> IF booleanexpression THEN closedStatement . ELSE closedStatement
+    (24) content -> closedStatement .
+
+    ELSE            shift and go to state 129
+    SEMICOLON       reduce using rule 24 (content -> closedStatement .)
+    END             reduce using rule 24 (content -> closedStatement .)
+
+
+state 101
+
+    (32) closedStatement -> WHILE . booleanexpression DO closedStatement
+    (27) openStatement -> WHILE . booleanexpression DO openStatement
+    (49) booleanexpression -> . expression booleanTail
+    (52) expression -> . termo
+    (53) expression -> . expression oplp termo
+    (54) termo -> . fator
+    (55) termo -> . termo ophp fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    booleanexpression              shift and go to state 130
+    expression                     shift and go to state 29
+    termo                          shift and go to state 30
+    fator                          shift and go to state 31
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 102
+
+    (33) closedStatement -> FOR . ID ATTRIB expression forDirection expression DO closedStatement
+    (28) openStatement -> FOR . ID ATTRIB expression forDirection expression DO openStatement
+
+    ID              shift and go to state 131
+
+
+state 103
+
+    (53) expression -> expression oplp termo .
+    (55) termo -> termo . ophp fator
+    (56) ophp -> . TIMES
+    (57) ophp -> . DIV
+    (58) ophp -> . MOD
+    (59) ophp -> . AND
+    (60) ophp -> . DIVIDE
+
+    PLUS            reduce using rule 53 (expression -> expression oplp termo .)
+    MINUS           reduce using rule 53 (expression -> expression oplp termo .)
+    OR              reduce using rule 53 (expression -> expression oplp termo .)
+    EQUALS          reduce using rule 53 (expression -> expression oplp termo .)
+    GREATER         reduce using rule 53 (expression -> expression oplp termo .)
+    GE              reduce using rule 53 (expression -> expression oplp termo .)
+    LESSER          reduce using rule 53 (expression -> expression oplp termo .)
+    LE              reduce using rule 53 (expression -> expression oplp termo .)
+    NOTEQUAL        reduce using rule 53 (expression -> expression oplp termo .)
+    THEN            reduce using rule 53 (expression -> expression oplp termo .)
+    DO              reduce using rule 53 (expression -> expression oplp termo .)
+    RPARENT         reduce using rule 53 (expression -> expression oplp termo .)
+    RBRACKET        reduce using rule 53 (expression -> expression oplp termo .)
+    SEMICOLON       reduce using rule 53 (expression -> expression oplp termo .)
+    END             reduce using rule 53 (expression -> expression oplp termo .)
+    ELSE            reduce using rule 53 (expression -> expression oplp termo .)
+    TO              reduce using rule 53 (expression -> expression oplp termo .)
+    DOWNTO          reduce using rule 53 (expression -> expression oplp termo .)
+    TIMES           shift and go to state 71
+    DIV             shift and go to state 72
+    MOD             shift and go to state 73
+    AND             shift and go to state 74
+    DIVIDE          shift and go to state 75
+
+    ophp                           shift and go to state 70
+
+state 104
+
+    (50) booleanTail -> oplogico expression .
+    (53) expression -> expression . oplp termo
+    (61) oplp -> . PLUS
+    (62) oplp -> . MINUS
+    (63) oplp -> . OR
+
+    THEN            reduce using rule 50 (booleanTail -> oplogico expression .)
+    DO              reduce using rule 50 (booleanTail -> oplogico expression .)
+    RPARENT         reduce using rule 50 (booleanTail -> oplogico expression .)
+    PLUS            shift and go to state 61
+    MINUS           shift and go to state 62
+    OR              shift and go to state 63
+
+    oplp                           shift and go to state 58
+
+state 105
+
+    (55) termo -> termo ophp fator .
+
+    TIMES           reduce using rule 55 (termo -> termo ophp fator .)
+    DIV             reduce using rule 55 (termo -> termo ophp fator .)
+    MOD             reduce using rule 55 (termo -> termo ophp fator .)
+    AND             reduce using rule 55 (termo -> termo ophp fator .)
+    DIVIDE          reduce using rule 55 (termo -> termo ophp fator .)
+    PLUS            reduce using rule 55 (termo -> termo ophp fator .)
+    MINUS           reduce using rule 55 (termo -> termo ophp fator .)
+    OR              reduce using rule 55 (termo -> termo ophp fator .)
+    EQUALS          reduce using rule 55 (termo -> termo ophp fator .)
+    GREATER         reduce using rule 55 (termo -> termo ophp fator .)
+    GE              reduce using rule 55 (termo -> termo ophp fator .)
+    LESSER          reduce using rule 55 (termo -> termo ophp fator .)
+    LE              reduce using rule 55 (termo -> termo ophp fator .)
+    NOTEQUAL        reduce using rule 55 (termo -> termo ophp fator .)
+    THEN            reduce using rule 55 (termo -> termo ophp fator .)
+    DO              reduce using rule 55 (termo -> termo ophp fator .)
+    RPARENT         reduce using rule 55 (termo -> termo ophp fator .)
+    RBRACKET        reduce using rule 55 (termo -> termo ophp fator .)
+    SEMICOLON       reduce using rule 55 (termo -> termo ophp fator .)
+    END             reduce using rule 55 (termo -> termo ophp fator .)
+    ELSE            reduce using rule 55 (termo -> termo ophp fator .)
+    TO              reduce using rule 55 (termo -> termo ophp fator .)
+    DOWNTO          reduce using rule 55 (termo -> termo ophp fator .)
+
+
+state 106
+
+    (66) fator -> LPARENT booleanexpression RPARENT .
+
+    TIMES           reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    DIV             reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    MOD             reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    AND             reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    DIVIDE          reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    PLUS            reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    MINUS           reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    OR              reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    EQUALS          reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    GREATER         reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    GE              reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    LESSER          reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    LE              reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    NOTEQUAL        reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    THEN            reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    DO              reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    RPARENT         reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    RBRACKET        reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    SEMICOLON       reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    END             reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    ELSE            reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    TO              reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+    DOWNTO          reduce using rule 66 (fator -> LPARENT booleanexpression RPARENT .)
+
+
+state 107
+
+    (77) varTail -> LBRACKET expression . RBRACKET
+    (53) expression -> expression . oplp termo
+    (61) oplp -> . PLUS
+    (62) oplp -> . MINUS
+    (63) oplp -> . OR
+
+    RBRACKET        shift and go to state 132
+    PLUS            shift and go to state 61
+    MINUS           shift and go to state 62
+    OR              shift and go to state 63
+
+    oplp                           shift and go to state 58
+
+state 108
+
+    (69) functioncall -> LENGTH LPARENT arguments . RPARENT
+
+    RPARENT         shift and go to state 133
+
+
+state 109
+
+    (70) arguments -> ID .
+
+    RPARENT         reduce using rule 70 (arguments -> ID .)
+
+
+state 110
+
+    (71) arguments -> FRASE .
+
+    RPARENT         reduce using rule 71 (arguments -> FRASE .)
+
+
+state 111
+
+    (27) openStatement -> WHILE booleanexpression DO openStatement .
+
+    SEMICOLON       reduce using rule 27 (openStatement -> WHILE booleanexpression DO openStatement .)
+    END             reduce using rule 27 (openStatement -> WHILE booleanexpression DO openStatement .)
+
+
+state 112
+
+    (32) closedStatement -> WHILE booleanexpression DO closedStatement .
+
+    SEMICOLON       reduce using rule 32 (closedStatement -> WHILE booleanexpression DO closedStatement .)
+    END             reduce using rule 32 (closedStatement -> WHILE booleanexpression DO closedStatement .)
+    ELSE            reduce using rule 32 (closedStatement -> WHILE booleanexpression DO closedStatement .)
+
+
+state 113
+
+    (28) openStatement -> FOR ID ATTRIB expression . forDirection expression DO openStatement
+    (33) closedStatement -> FOR ID ATTRIB expression . forDirection expression DO closedStatement
+    (53) expression -> expression . oplp termo
+    (47) forDirection -> . TO
+    (48) forDirection -> . DOWNTO
+    (61) oplp -> . PLUS
+    (62) oplp -> . MINUS
+    (63) oplp -> . OR
+
+    TO              shift and go to state 135
+    DOWNTO          shift and go to state 136
+    PLUS            shift and go to state 61
+    MINUS           shift and go to state 62
+    OR              shift and go to state 63
+
+    forDirection                   shift and go to state 134
+    oplp                           shift and go to state 58
+
+state 114
+
+    (43) idTail -> LBRACKET expression RBRACKET .
+
+    ATTRIB          reduce using rule 43 (idTail -> LBRACKET expression RBRACKET .)
+    COMMA           reduce using rule 43 (idTail -> LBRACKET expression RBRACKET .)
+    RPARENT         reduce using rule 43 (idTail -> LBRACKET expression RBRACKET .)
+
+
+state 115
+
+    (34) simpleStatement -> WRITELN LPARENT writeArgs RPARENT .
+
+    SEMICOLON       reduce using rule 34 (simpleStatement -> WRITELN LPARENT writeArgs RPARENT .)
+    END             reduce using rule 34 (simpleStatement -> WRITELN LPARENT writeArgs RPARENT .)
+    ELSE            reduce using rule 34 (simpleStatement -> WRITELN LPARENT writeArgs RPARENT .)
+
+
+state 116
+
+    (36) writeArgs -> singleArg moreArgs .
+
+    RPARENT         reduce using rule 36 (writeArgs -> singleArg moreArgs .)
+
+
+state 117
+
+    (37) moreArgs -> COMMA . singleArg moreArgs
+    (39) singleArg -> . FRASE
+    (40) singleArg -> . ID idTail
+
+    FRASE           shift and go to state 87
+    ID              shift and go to state 88
+
+    singleArg                      shift and go to state 137
+
+state 118
+
+    (38) moreArgs -> empty .
+
+    RPARENT         reduce using rule 38 (moreArgs -> empty .)
+
+
+state 119
+
+    (40) singleArg -> ID idTail .
+
+    COMMA           reduce using rule 40 (singleArg -> ID idTail .)
+    RPARENT         reduce using rule 40 (singleArg -> ID idTail .)
+
+
+state 120
+
+    (35) simpleStatement -> WRITE LPARENT writeArgs RPARENT .
+
+    SEMICOLON       reduce using rule 35 (simpleStatement -> WRITE LPARENT writeArgs RPARENT .)
+    END             reduce using rule 35 (simpleStatement -> WRITE LPARENT writeArgs RPARENT .)
+    ELSE            reduce using rule 35 (simpleStatement -> WRITE LPARENT writeArgs RPARENT .)
+
+
+state 121
+
+    (41) simpleStatement -> READLN LPARENT readIdOrArray RPARENT .
+
+    SEMICOLON       reduce using rule 41 (simpleStatement -> READLN LPARENT readIdOrArray RPARENT .)
+    END             reduce using rule 41 (simpleStatement -> READLN LPARENT readIdOrArray RPARENT .)
+    ELSE            reduce using rule 41 (simpleStatement -> READLN LPARENT readIdOrArray RPARENT .)
+
+
+state 122
+
+    (42) readIdOrArray -> ID idTail .
+
+    RPARENT         reduce using rule 42 (readIdOrArray -> ID idTail .)
+
+
+state 123
+
+    (5) varDecls -> varDeclaration varDecls .
+
+    BEGIN           reduce using rule 5 (varDecls -> varDeclaration varDecls .)
+
+
+state 124
+
+    (7) varDeclaration -> idList COLON . type SEMICOLON
+    (11) type -> . baseType
+    (12) type -> . arrayType
+    (14) baseType -> . INTEGER
+    (15) baseType -> . REAL
+    (16) baseType -> . BOOLEAN
+    (17) baseType -> . STRING
+    (13) arrayType -> . ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET OF baseType
+
+    INTEGER         shift and go to state 141
+    REAL            shift and go to state 142
+    BOOLEAN         shift and go to state 143
+    STRING          shift and go to state 144
+    ARRAY           shift and go to state 145
+
+    type                           shift and go to state 138
+    baseType                       shift and go to state 139
+    arrayType                      shift and go to state 140
+
+state 125
+
+    (8) idList -> ID idListTail .
+
+    COLON           reduce using rule 8 (idList -> ID idListTail .)
+
+
+state 126
+
+    (9) idListTail -> COMMA . ID idListTail
+
+    ID              shift and go to state 146
+
+
+state 127
+
+    (10) idListTail -> empty .
+
+    COLON           reduce using rule 10 (idListTail -> empty .)
+
+
+state 128
+
+    (31) closedStatement -> IF booleanexpression . THEN closedStatement ELSE closedStatement
+    (25) openStatement -> IF booleanexpression . THEN content
+    (26) openStatement -> IF booleanexpression . THEN closedStatement ELSE openStatement
+
+    THEN            shift and go to state 147
+
+
+state 129
+
+    (26) openStatement -> IF booleanexpression THEN closedStatement ELSE . openStatement
+    (31) closedStatement -> IF booleanexpression THEN closedStatement ELSE . closedStatement
+    (25) openStatement -> . IF booleanexpression THEN content
+    (26) openStatement -> . IF booleanexpression THEN closedStatement ELSE openStatement
+    (27) openStatement -> . WHILE booleanexpression DO openStatement
+    (28) openStatement -> . FOR ID ATTRIB expression forDirection expression DO openStatement
+    (29) closedStatement -> . simpleStatement
+    (30) closedStatement -> . block
+    (31) closedStatement -> . IF booleanexpression THEN closedStatement ELSE closedStatement
+    (32) closedStatement -> . WHILE booleanexpression DO closedStatement
+    (33) closedStatement -> . FOR ID ATTRIB expression forDirection expression DO closedStatement
+    (34) simpleStatement -> . WRITELN LPARENT writeArgs RPARENT
+    (35) simpleStatement -> . WRITE LPARENT writeArgs RPARENT
+    (41) simpleStatement -> . READLN LPARENT readIdOrArray RPARENT
+    (45) simpleStatement -> . attribIdOrArray ATTRIB expression
+    (18) block -> . BEGIN contentList END
+    (46) attribIdOrArray -> . ID idTail
+
+    IF              shift and go to state 13
+    WHILE           shift and go to state 14
+    FOR             shift and go to state 15
+    WRITELN         shift and go to state 19
+    WRITE           shift and go to state 20
+    READLN          shift and go to state 21
+    BEGIN           shift and go to state 5
+    ID              shift and go to state 16
+
+    closedStatement                shift and go to state 148
+    openStatement                  shift and go to state 149
+    simpleStatement                shift and go to state 17
+    block                          shift and go to state 18
+    attribIdOrArray                shift and go to state 22
+
+state 130
+
+    (32) closedStatement -> WHILE booleanexpression . DO closedStatement
+    (27) openStatement -> WHILE booleanexpression . DO openStatement
+
+    DO              shift and go to state 150
+
+
+state 131
+
+    (33) closedStatement -> FOR ID . ATTRIB expression forDirection expression DO closedStatement
+    (28) openStatement -> FOR ID . ATTRIB expression forDirection expression DO openStatement
+
+    ATTRIB          shift and go to state 151
+
+
+state 132
+
+    (77) varTail -> LBRACKET expression RBRACKET .
+
+    TIMES           reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    DIV             reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    MOD             reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    AND             reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    DIVIDE          reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    PLUS            reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    MINUS           reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    OR              reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    EQUALS          reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    GREATER         reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    GE              reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    LESSER          reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    LE              reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    NOTEQUAL        reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    THEN            reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    DO              reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    RPARENT         reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    RBRACKET        reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    SEMICOLON       reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    END             reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    ELSE            reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    TO              reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+    DOWNTO          reduce using rule 77 (varTail -> LBRACKET expression RBRACKET .)
+
+
+state 133
+
+    (69) functioncall -> LENGTH LPARENT arguments RPARENT .
+
+    TIMES           reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    DIV             reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    MOD             reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    AND             reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    DIVIDE          reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    PLUS            reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    MINUS           reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    OR              reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    EQUALS          reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    GREATER         reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    GE              reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    LESSER          reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    LE              reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    NOTEQUAL        reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    THEN            reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    DO              reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    RPARENT         reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    RBRACKET        reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    SEMICOLON       reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    END             reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    ELSE            reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    TO              reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+    DOWNTO          reduce using rule 69 (functioncall -> LENGTH LPARENT arguments RPARENT .)
+
+
+state 134
+
+    (28) openStatement -> FOR ID ATTRIB expression forDirection . expression DO openStatement
+    (33) closedStatement -> FOR ID ATTRIB expression forDirection . expression DO closedStatement
+    (52) expression -> . termo
+    (53) expression -> . expression oplp termo
+    (54) termo -> . fator
+    (55) termo -> . termo ophp fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    expression                     shift and go to state 152
+    termo                          shift and go to state 30
+    fator                          shift and go to state 31
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 135
+
+    (47) forDirection -> TO .
+
+    LPARENT         reduce using rule 47 (forDirection -> TO .)
+    NOT             reduce using rule 47 (forDirection -> TO .)
+    NUMBER          reduce using rule 47 (forDirection -> TO .)
+    FRASE           reduce using rule 47 (forDirection -> TO .)
+    TRUE            reduce using rule 47 (forDirection -> TO .)
+    FALSE           reduce using rule 47 (forDirection -> TO .)
+    ID              reduce using rule 47 (forDirection -> TO .)
+    LENGTH          reduce using rule 47 (forDirection -> TO .)
+
+
+state 136
+
+    (48) forDirection -> DOWNTO .
+
+    LPARENT         reduce using rule 48 (forDirection -> DOWNTO .)
+    NOT             reduce using rule 48 (forDirection -> DOWNTO .)
+    NUMBER          reduce using rule 48 (forDirection -> DOWNTO .)
+    FRASE           reduce using rule 48 (forDirection -> DOWNTO .)
+    TRUE            reduce using rule 48 (forDirection -> DOWNTO .)
+    FALSE           reduce using rule 48 (forDirection -> DOWNTO .)
+    ID              reduce using rule 48 (forDirection -> DOWNTO .)
+    LENGTH          reduce using rule 48 (forDirection -> DOWNTO .)
+
+
+state 137
+
+    (37) moreArgs -> COMMA singleArg . moreArgs
+    (37) moreArgs -> . COMMA singleArg moreArgs
+    (38) moreArgs -> . empty
+    (85) empty -> .
+
+    COMMA           shift and go to state 117
+    RPARENT         reduce using rule 85 (empty -> .)
+
+    moreArgs                       shift and go to state 153
+    empty                          shift and go to state 118
+
+state 138
+
+    (7) varDeclaration -> idList COLON type . SEMICOLON
+
+    SEMICOLON       shift and go to state 154
+
+
+state 139
+
+    (11) type -> baseType .
+
+    SEMICOLON       reduce using rule 11 (type -> baseType .)
+
+
+state 140
+
+    (12) type -> arrayType .
+
+    SEMICOLON       reduce using rule 12 (type -> arrayType .)
+
+
+state 141
+
+    (14) baseType -> INTEGER .
+
+    SEMICOLON       reduce using rule 14 (baseType -> INTEGER .)
+
+
+state 142
+
+    (15) baseType -> REAL .
+
+    SEMICOLON       reduce using rule 15 (baseType -> REAL .)
+
+
+state 143
+
+    (16) baseType -> BOOLEAN .
+
+    SEMICOLON       reduce using rule 16 (baseType -> BOOLEAN .)
+
+
+state 144
+
+    (17) baseType -> STRING .
+
+    SEMICOLON       reduce using rule 17 (baseType -> STRING .)
+
+
+state 145
+
+    (13) arrayType -> ARRAY . LBRACKET NUMBER RANGE NUMBER RBRACKET OF baseType
+
+    LBRACKET        shift and go to state 155
+
+
+state 146
+
+    (9) idListTail -> COMMA ID . idListTail
+    (9) idListTail -> . COMMA ID idListTail
+    (10) idListTail -> . empty
+    (85) empty -> .
+
+    COMMA           shift and go to state 126
+    COLON           reduce using rule 85 (empty -> .)
+
+    idListTail                     shift and go to state 156
+    empty                          shift and go to state 127
+
+state 147
+
+    (31) closedStatement -> IF booleanexpression THEN . closedStatement ELSE closedStatement
+    (25) openStatement -> IF booleanexpression THEN . content
+    (26) openStatement -> IF booleanexpression THEN . closedStatement ELSE openStatement
+    (29) closedStatement -> . simpleStatement
+    (30) closedStatement -> . block
+    (31) closedStatement -> . IF booleanexpression THEN closedStatement ELSE closedStatement
+    (32) closedStatement -> . WHILE booleanexpression DO closedStatement
+    (33) closedStatement -> . FOR ID ATTRIB expression forDirection expression DO closedStatement
+    (23) content -> . openStatement
+    (24) content -> . closedStatement
+    (34) simpleStatement -> . WRITELN LPARENT writeArgs RPARENT
+    (35) simpleStatement -> . WRITE LPARENT writeArgs RPARENT
+    (41) simpleStatement -> . READLN LPARENT readIdOrArray RPARENT
+    (45) simpleStatement -> . attribIdOrArray ATTRIB expression
+    (18) block -> . BEGIN contentList END
+    (25) openStatement -> . IF booleanexpression THEN content
+    (26) openStatement -> . IF booleanexpression THEN closedStatement ELSE openStatement
+    (27) openStatement -> . WHILE booleanexpression DO openStatement
+    (28) openStatement -> . FOR ID ATTRIB expression forDirection expression DO openStatement
+    (46) attribIdOrArray -> . ID idTail
+
+    IF              shift and go to state 98
+    WHILE           shift and go to state 101
+    FOR             shift and go to state 102
+    WRITELN         shift and go to state 19
+    WRITE           shift and go to state 20
+    READLN          shift and go to state 21
+    BEGIN           shift and go to state 5
+    ID              shift and go to state 16
+
+    closedStatement                shift and go to state 157
+    content                        shift and go to state 99
+    openStatement                  shift and go to state 11
+    simpleStatement                shift and go to state 17
+    block                          shift and go to state 18
+    attribIdOrArray                shift and go to state 22
+
+state 148
+
+    (31) closedStatement -> IF booleanexpression THEN closedStatement ELSE closedStatement .
+
+    SEMICOLON       reduce using rule 31 (closedStatement -> IF booleanexpression THEN closedStatement ELSE closedStatement .)
+    END             reduce using rule 31 (closedStatement -> IF booleanexpression THEN closedStatement ELSE closedStatement .)
+    ELSE            reduce using rule 31 (closedStatement -> IF booleanexpression THEN closedStatement ELSE closedStatement .)
+
+
+state 149
+
+    (26) openStatement -> IF booleanexpression THEN closedStatement ELSE openStatement .
+
+    SEMICOLON       reduce using rule 26 (openStatement -> IF booleanexpression THEN closedStatement ELSE openStatement .)
+    END             reduce using rule 26 (openStatement -> IF booleanexpression THEN closedStatement ELSE openStatement .)
+
+
+state 150
+
+    (32) closedStatement -> WHILE booleanexpression DO . closedStatement
+    (27) openStatement -> WHILE booleanexpression DO . openStatement
+    (29) closedStatement -> . simpleStatement
+    (30) closedStatement -> . block
+    (31) closedStatement -> . IF booleanexpression THEN closedStatement ELSE closedStatement
+    (32) closedStatement -> . WHILE booleanexpression DO closedStatement
+    (33) closedStatement -> . FOR ID ATTRIB expression forDirection expression DO closedStatement
+    (25) openStatement -> . IF booleanexpression THEN content
+    (26) openStatement -> . IF booleanexpression THEN closedStatement ELSE openStatement
+    (27) openStatement -> . WHILE booleanexpression DO openStatement
+    (28) openStatement -> . FOR ID ATTRIB expression forDirection expression DO openStatement
+    (34) simpleStatement -> . WRITELN LPARENT writeArgs RPARENT
+    (35) simpleStatement -> . WRITE LPARENT writeArgs RPARENT
+    (41) simpleStatement -> . READLN LPARENT readIdOrArray RPARENT
+    (45) simpleStatement -> . attribIdOrArray ATTRIB expression
+    (18) block -> . BEGIN contentList END
+    (46) attribIdOrArray -> . ID idTail
+
+    IF              shift and go to state 98
+    WHILE           shift and go to state 101
+    FOR             shift and go to state 102
+    WRITELN         shift and go to state 19
+    WRITE           shift and go to state 20
+    READLN          shift and go to state 21
+    BEGIN           shift and go to state 5
+    ID              shift and go to state 16
+
+    closedStatement                shift and go to state 112
+    openStatement                  shift and go to state 111
+    simpleStatement                shift and go to state 17
+    block                          shift and go to state 18
+    attribIdOrArray                shift and go to state 22
+
+state 151
+
+    (33) closedStatement -> FOR ID ATTRIB . expression forDirection expression DO closedStatement
+    (28) openStatement -> FOR ID ATTRIB . expression forDirection expression DO openStatement
+    (52) expression -> . termo
+    (53) expression -> . expression oplp termo
+    (54) termo -> . fator
+    (55) termo -> . termo ophp fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    expression                     shift and go to state 158
+    termo                          shift and go to state 30
+    fator                          shift and go to state 31
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 152
+
+    (28) openStatement -> FOR ID ATTRIB expression forDirection expression . DO openStatement
+    (33) closedStatement -> FOR ID ATTRIB expression forDirection expression . DO closedStatement
+    (53) expression -> expression . oplp termo
+    (61) oplp -> . PLUS
+    (62) oplp -> . MINUS
+    (63) oplp -> . OR
+
+    DO              shift and go to state 159
+    PLUS            shift and go to state 61
+    MINUS           shift and go to state 62
+    OR              shift and go to state 63
+
+    oplp                           shift and go to state 58
+
+state 153
+
+    (37) moreArgs -> COMMA singleArg moreArgs .
+
+    RPARENT         reduce using rule 37 (moreArgs -> COMMA singleArg moreArgs .)
+
+
+state 154
+
+    (7) varDeclaration -> idList COLON type SEMICOLON .
+
+    ID              reduce using rule 7 (varDeclaration -> idList COLON type SEMICOLON .)
+    BEGIN           reduce using rule 7 (varDeclaration -> idList COLON type SEMICOLON .)
+
+
+state 155
+
+    (13) arrayType -> ARRAY LBRACKET . NUMBER RANGE NUMBER RBRACKET OF baseType
+
+    NUMBER          shift and go to state 160
+
+
+state 156
+
+    (9) idListTail -> COMMA ID idListTail .
+
+    COLON           reduce using rule 9 (idListTail -> COMMA ID idListTail .)
+
+
+state 157
+
+    (31) closedStatement -> IF booleanexpression THEN closedStatement . ELSE closedStatement
+    (26) openStatement -> IF booleanexpression THEN closedStatement . ELSE openStatement
+    (24) content -> closedStatement .
+
+    ELSE            shift and go to state 161
+    SEMICOLON       reduce using rule 24 (content -> closedStatement .)
+    END             reduce using rule 24 (content -> closedStatement .)
+
+
+state 158
+
+    (33) closedStatement -> FOR ID ATTRIB expression . forDirection expression DO closedStatement
+    (28) openStatement -> FOR ID ATTRIB expression . forDirection expression DO openStatement
+    (53) expression -> expression . oplp termo
+    (47) forDirection -> . TO
+    (48) forDirection -> . DOWNTO
+    (61) oplp -> . PLUS
+    (62) oplp -> . MINUS
+    (63) oplp -> . OR
+
+    TO              shift and go to state 135
+    DOWNTO          shift and go to state 136
+    PLUS            shift and go to state 61
+    MINUS           shift and go to state 62
+    OR              shift and go to state 63
+
+    forDirection                   shift and go to state 162
+    oplp                           shift and go to state 58
+
+state 159
+
+    (28) openStatement -> FOR ID ATTRIB expression forDirection expression DO . openStatement
+    (33) closedStatement -> FOR ID ATTRIB expression forDirection expression DO . closedStatement
+    (25) openStatement -> . IF booleanexpression THEN content
+    (26) openStatement -> . IF booleanexpression THEN closedStatement ELSE openStatement
+    (27) openStatement -> . WHILE booleanexpression DO openStatement
+    (28) openStatement -> . FOR ID ATTRIB expression forDirection expression DO openStatement
+    (29) closedStatement -> . simpleStatement
+    (30) closedStatement -> . block
+    (31) closedStatement -> . IF booleanexpression THEN closedStatement ELSE closedStatement
+    (32) closedStatement -> . WHILE booleanexpression DO closedStatement
+    (33) closedStatement -> . FOR ID ATTRIB expression forDirection expression DO closedStatement
+    (34) simpleStatement -> . WRITELN LPARENT writeArgs RPARENT
+    (35) simpleStatement -> . WRITE LPARENT writeArgs RPARENT
+    (41) simpleStatement -> . READLN LPARENT readIdOrArray RPARENT
+    (45) simpleStatement -> . attribIdOrArray ATTRIB expression
+    (18) block -> . BEGIN contentList END
+    (46) attribIdOrArray -> . ID idTail
+
+    IF              shift and go to state 13
+    WHILE           shift and go to state 14
+    FOR             shift and go to state 15
+    WRITELN         shift and go to state 19
+    WRITE           shift and go to state 20
+    READLN          shift and go to state 21
+    BEGIN           shift and go to state 5
+    ID              shift and go to state 16
+
+    openStatement                  shift and go to state 163
+    closedStatement                shift and go to state 164
+    simpleStatement                shift and go to state 17
+    block                          shift and go to state 18
+    attribIdOrArray                shift and go to state 22
+
+state 160
+
+    (13) arrayType -> ARRAY LBRACKET NUMBER . RANGE NUMBER RBRACKET OF baseType
+
+    RANGE           shift and go to state 165
+
+
+state 161
+
+    (31) closedStatement -> IF booleanexpression THEN closedStatement ELSE . closedStatement
+    (26) openStatement -> IF booleanexpression THEN closedStatement ELSE . openStatement
+    (29) closedStatement -> . simpleStatement
+    (30) closedStatement -> . block
+    (31) closedStatement -> . IF booleanexpression THEN closedStatement ELSE closedStatement
+    (32) closedStatement -> . WHILE booleanexpression DO closedStatement
+    (33) closedStatement -> . FOR ID ATTRIB expression forDirection expression DO closedStatement
+    (25) openStatement -> . IF booleanexpression THEN content
+    (26) openStatement -> . IF booleanexpression THEN closedStatement ELSE openStatement
+    (27) openStatement -> . WHILE booleanexpression DO openStatement
+    (28) openStatement -> . FOR ID ATTRIB expression forDirection expression DO openStatement
+    (34) simpleStatement -> . WRITELN LPARENT writeArgs RPARENT
+    (35) simpleStatement -> . WRITE LPARENT writeArgs RPARENT
+    (41) simpleStatement -> . READLN LPARENT readIdOrArray RPARENT
+    (45) simpleStatement -> . attribIdOrArray ATTRIB expression
+    (18) block -> . BEGIN contentList END
+    (46) attribIdOrArray -> . ID idTail
+
+    IF              shift and go to state 98
+    WHILE           shift and go to state 101
+    FOR             shift and go to state 102
+    WRITELN         shift and go to state 19
+    WRITE           shift and go to state 20
+    READLN          shift and go to state 21
+    BEGIN           shift and go to state 5
+    ID              shift and go to state 16
+
+    closedStatement                shift and go to state 148
+    openStatement                  shift and go to state 149
+    simpleStatement                shift and go to state 17
+    block                          shift and go to state 18
+    attribIdOrArray                shift and go to state 22
+
+state 162
+
+    (33) closedStatement -> FOR ID ATTRIB expression forDirection . expression DO closedStatement
+    (28) openStatement -> FOR ID ATTRIB expression forDirection . expression DO openStatement
+    (52) expression -> . termo
+    (53) expression -> . expression oplp termo
+    (54) termo -> . fator
+    (55) termo -> . termo ophp fator
+    (64) fator -> . const
+    (65) fator -> . var
+    (66) fator -> . LPARENT booleanexpression RPARENT
+    (67) fator -> . functioncall
+    (68) fator -> . NOT fator
+    (72) const -> . NUMBER
+    (73) const -> . FRASE
+    (74) const -> . TRUE
+    (75) const -> . FALSE
+    (76) var -> . ID varTail
+    (69) functioncall -> . LENGTH LPARENT arguments RPARENT
+
+    LPARENT         shift and go to state 34
+    NOT             shift and go to state 36
+    NUMBER          shift and go to state 37
+    FRASE           shift and go to state 38
+    TRUE            shift and go to state 39
+    FALSE           shift and go to state 40
+    ID              shift and go to state 41
+    LENGTH          shift and go to state 42
+
+    expression                     shift and go to state 166
+    termo                          shift and go to state 30
+    fator                          shift and go to state 31
+    const                          shift and go to state 32
+    var                            shift and go to state 33
+    functioncall                   shift and go to state 35
+
+state 163
+
+    (28) openStatement -> FOR ID ATTRIB expression forDirection expression DO openStatement .
+
+    SEMICOLON       reduce using rule 28 (openStatement -> FOR ID ATTRIB expression forDirection expression DO openStatement .)
+    END             reduce using rule 28 (openStatement -> FOR ID ATTRIB expression forDirection expression DO openStatement .)
+
+
+state 164
+
+    (33) closedStatement -> FOR ID ATTRIB expression forDirection expression DO closedStatement .
+
+    SEMICOLON       reduce using rule 33 (closedStatement -> FOR ID ATTRIB expression forDirection expression DO closedStatement .)
+    END             reduce using rule 33 (closedStatement -> FOR ID ATTRIB expression forDirection expression DO closedStatement .)
+    ELSE            reduce using rule 33 (closedStatement -> FOR ID ATTRIB expression forDirection expression DO closedStatement .)
+
+
+state 165
+
+    (13) arrayType -> ARRAY LBRACKET NUMBER RANGE . NUMBER RBRACKET OF baseType
+
+    NUMBER          shift and go to state 167
+
+
+state 166
+
+    (33) closedStatement -> FOR ID ATTRIB expression forDirection expression . DO closedStatement
+    (28) openStatement -> FOR ID ATTRIB expression forDirection expression . DO openStatement
+    (53) expression -> expression . oplp termo
+    (61) oplp -> . PLUS
+    (62) oplp -> . MINUS
+    (63) oplp -> . OR
+
+    DO              shift and go to state 168
+    PLUS            shift and go to state 61
+    MINUS           shift and go to state 62
+    OR              shift and go to state 63
+
+    oplp                           shift and go to state 58
+
+state 167
+
+    (13) arrayType -> ARRAY LBRACKET NUMBER RANGE NUMBER . RBRACKET OF baseType
+
+    RBRACKET        shift and go to state 169
+
+
+state 168
+
+    (33) closedStatement -> FOR ID ATTRIB expression forDirection expression DO . closedStatement
+    (28) openStatement -> FOR ID ATTRIB expression forDirection expression DO . openStatement
+    (29) closedStatement -> . simpleStatement
+    (30) closedStatement -> . block
+    (31) closedStatement -> . IF booleanexpression THEN closedStatement ELSE closedStatement
+    (32) closedStatement -> . WHILE booleanexpression DO closedStatement
+    (33) closedStatement -> . FOR ID ATTRIB expression forDirection expression DO closedStatement
+    (25) openStatement -> . IF booleanexpression THEN content
+    (26) openStatement -> . IF booleanexpression THEN closedStatement ELSE openStatement
+    (27) openStatement -> . WHILE booleanexpression DO openStatement
+    (28) openStatement -> . FOR ID ATTRIB expression forDirection expression DO openStatement
+    (34) simpleStatement -> . WRITELN LPARENT writeArgs RPARENT
+    (35) simpleStatement -> . WRITE LPARENT writeArgs RPARENT
+    (41) simpleStatement -> . READLN LPARENT readIdOrArray RPARENT
+    (45) simpleStatement -> . attribIdOrArray ATTRIB expression
+    (18) block -> . BEGIN contentList END
+    (46) attribIdOrArray -> . ID idTail
+
+    IF              shift and go to state 98
+    WHILE           shift and go to state 101
+    FOR             shift and go to state 102
+    WRITELN         shift and go to state 19
+    WRITE           shift and go to state 20
+    READLN          shift and go to state 21
+    BEGIN           shift and go to state 5
+    ID              shift and go to state 16
+
+    closedStatement                shift and go to state 164
+    openStatement                  shift and go to state 163
+    simpleStatement                shift and go to state 17
+    block                          shift and go to state 18
+    attribIdOrArray                shift and go to state 22
+
+state 169
+
+    (13) arrayType -> ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET . OF baseType
+
+    OF              shift and go to state 170
+
+
+state 170
+
+    (13) arrayType -> ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET OF . baseType
+    (14) baseType -> . INTEGER
+    (15) baseType -> . REAL
+    (16) baseType -> . BOOLEAN
+    (17) baseType -> . STRING
+
+    INTEGER         shift and go to state 141
+    REAL            shift and go to state 142
+    BOOLEAN         shift and go to state 143
+    STRING          shift and go to state 144
+
+    baseType                       shift and go to state 171
+
+state 171
+
+    (13) arrayType -> ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET OF baseType .
+
+    SEMICOLON       reduce using rule 13 (arrayType -> ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET OF baseType .)
+

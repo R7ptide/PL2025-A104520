@@ -1,0 +1,80 @@
+    PUSHI 0
+    PUSHI 0
+    PUSHF 0.0
+    PUSHF 0.0
+    PUSHF 0.0
+    PUSHF 0.0
+START:
+    PUSHI 10
+    STOREG 0
+    PUSHI 5
+    STOREG 1
+    PUSHG 0
+    PUSHG 1
+    SUP
+    JZ ENDIF0
+    PUSHS "a > b: verdadeiro"
+    WRITES
+    WRITELN
+ENDIF0:
+    PUSHG 0
+    PUSHG 1
+    SUPEQ
+    JZ ENDIF1
+    PUSHS "a >= b: verdadeiro"
+    WRITES
+    WRITELN
+ENDIF1:
+    PUSHG 1
+    PUSHG 0
+    INF
+    JZ ENDIF2
+    PUSHS "b < a: verdadeiro"
+    WRITES
+    WRITELN
+ENDIF2:
+    PUSHG 1
+    PUSHG 0
+    INFEQ
+    JZ ENDIF3
+    PUSHS "b <= a: verdadeiro"
+    WRITES
+    WRITELN
+ENDIF3:
+    PUSHG 0
+    PUSHG 1
+    EQUAL
+    NOT
+    JZ ENDIF4
+    PUSHS "a <> b: verdadeiro"
+    WRITES
+    WRITELN
+ENDIF4:
+    PUSHF 15.0
+    STOREG 2
+    PUSHF 4.0
+    STOREG 3
+    PUSHG 2
+    PUSHG 3
+    FDIV
+    STOREG 4
+    PUSHS "15.0 / 4.0 = "
+    WRITES
+    WRITELN
+    PUSHG 4
+    WRITEF
+    WRITELN
+    PUSHG 0
+    PUSHG 1
+    FDIV
+    STOREG 5
+    PUSHG 5
+    PUSHF 2.0
+    EQUAL
+    NOT
+    JZ ENDIF5
+    PUSHS "Divisao de inteiros: resultado diferente de 2.0"
+    WRITES
+    WRITELN
+ENDIF5:
+STOP
