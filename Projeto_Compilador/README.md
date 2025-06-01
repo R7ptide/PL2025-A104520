@@ -3,19 +3,29 @@
  - Salvador Duarte Magalhães Barreto - A104520
 
 ## Índice
-- [Introdução](#introdução)
-- [Decisões tomadas para a análise léxica](#decisões-tomadas-para-a-análise-léxica)
-- [Símbolos literais e Identificadores](#símbolos-literais-e-identificadores)
-  - [Delimitadores e pontuação](#delimitadores-e-pontuação)
-  - [Operadores de comparação](#operadores-de-comparação)
-  - [Operadores](#operadores)
-  - [Palavras de estrutura em Pascal](#palavras-de-estrutura-em-pascal)
-  - [Tipos de dados](#tipos-de-dados)
-  - [Estruturas de controlo](#estruturas-de-controlo)
-  - [Funções de I/O e funções auxiliares](#funções-de-io-e-funções-auxiliares)
-  - [Comentários](#comentários)
-- [Tokenizer](#tokenizer)
-  - [Utilização](#utilização)
+- [Introdução](#introdução)  
+- [Decisões tomadas para a análise léxica](#decisões-tomadas-para-a-análise-léxica)  
+- [Símbolos literais e Identificadores](#símbolos-literais-e-identificadores)  
+  - [Delimitadores e pontuação](#delimitadores-e-pontuação)  
+  - [Operadores de comparação](#operadores-de-comparação)  
+  - [Operadores](#operadores)  
+  - [Palavras de estrutura em Pascal](#palavras-de-estrutura-em-pascal)  
+  - [Tipos de dados](#tipos-de-dados)  
+  - [Estruturas de controlo](#estruturas-de-controlo)  
+  - [Funções de I/O e funções auxiliares](#funções-de-io-e-funções-auxiliares)  
+  - [Comentários](#comentários)  
+- [Tokenizer](#tokenizer)  
+  - [Utilização](#utilização)  
+- [Decisões para a análise sintática](#decisões-para-a-análise-sintática)  
+- [Abordagens utilizadas no analisador sintático](#abordagens-utilizadas-no-analisador-sintático)  
+  - [Variáveis](#variáveis)  
+  - [Lógica do programa](#lógica-do-programa)  
+- [Testes](#testes)  
+  - [Testes de Erro Propositais](#testes-de-erro-propositais)  
+  - [Testes de Funcionalidades Específicas](#testes-de-funcionalidades-específicas)  
+  - [Metodologia de Teste](#metodologia-de-teste)  
+- [Conclusão](#conclusão)
+
 
 ## Introdução
 
